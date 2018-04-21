@@ -31,12 +31,12 @@ public class CharacterSelection : MonoBehaviour
 		// If we let go of the left mouse button, end selection
 		if (Input.GetMouseButtonUp(0))
 		{
-			foreach (var item in selectables)
+			foreach (var s in selectables.Values)
 			{
-				if (IsWithinSelectionBounds(item.Value.gameObject))
-					item.Value.isSelected = true;
+				if (IsWithinSelectionBounds(s.gameObject))
+					s.isSelected = true;
 				else
-					item.Value.isSelected = false;
+					s.isSelected = false;
 			}
 			SelectUnitByClick();
 			isSelecting = false;
