@@ -30,7 +30,6 @@ public class Chef : ISelectable {
 
 		if (o.type == eOrderType.WORK)
 		{
-			Debug.Log("Lets get to work");
 			if (assigned)
 			{
 				station.RemoveWorker();
