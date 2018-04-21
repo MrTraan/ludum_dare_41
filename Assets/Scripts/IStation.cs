@@ -9,7 +9,7 @@ abstract public class IStation : ISelectable {
 
 	public int maxWorkers = 0;
 	[SerializeField]
-	private int currentWorkers = 0;
+	protected int currentWorkers = 0;
 
 	// Use this for initialization
 	protected override void Start () {
@@ -19,19 +19,20 @@ abstract public class IStation : ISelectable {
 	}
 	
 	protected virtual void Update () {
-		if (!task.IsCompleted())
-			// Each worker has 1 work force for now
-			task.Progress(currentWorkers * 1.0f);
-		else
+		if (task.running && task.IsCompleted())
 		{
 			OnProduction();
 			task.Reset();
+		}
+		else if (task.running)
+		{
+			task.Progress(currentWorkers * 1.0f);
 		}
 	}
 
 	protected virtual void OnGUI()
 	{
-		if (task.completion > 0.0f && task.completion < 100.0f)
+		if (task.running)
 		{
 			var position = cam.WorldToScreenPoint(transform.position);
 			position.y = Screen.height - position.y;

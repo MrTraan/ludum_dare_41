@@ -5,6 +5,7 @@ using UnityEngine;
 public class Task : MonoBehaviour {
 	public float completion = 0;
 	public float step = 0.1f;
+	public bool running = false;
 
 	public float progressBarWidth = 20.0f;
 	public float progressBarHeight = 5.0f;
@@ -19,9 +20,16 @@ public class Task : MonoBehaviour {
 			completion = 100.0f;
 	}
 
+	public void Begin()
+	{
+		completion = 0;
+		running = true;
+	}
+
 	public void Reset()
 	{
 		completion = 0;
+		running = false;
 	}
 
 	public bool IsCompleted()
