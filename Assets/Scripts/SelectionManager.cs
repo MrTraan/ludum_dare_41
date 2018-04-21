@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class CharacterSelection : MonoBehaviour
+public class SelectionManager : MonoBehaviour
 {
 	private bool isSelecting = false;
 	private Vector3 mousePosition1;
@@ -28,6 +28,7 @@ public class CharacterSelection : MonoBehaviour
 			isSelecting = true;
 			mousePosition1 = Input.mousePosition;
 		}
+		
 		// If we let go of the left mouse button, end selection
 		if (Input.GetMouseButtonUp(0))
 		{
