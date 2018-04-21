@@ -7,6 +7,7 @@ public class Movable : MonoBehaviour
 {
   private NavMeshAgent agent;
   private Animator animator;
+  public bool hasReachedPosition = true;
   void Start()
   {
     agent = GetComponent<NavMeshAgent>();
@@ -24,6 +25,7 @@ public class Movable : MonoBehaviour
     agent.SetDestination(position);
     Vector3 dir = transform.position - position;
     SetFacingDirection(dir);
+    hasReachedPosition = false;
   }
 
   private void CheckMovement()
@@ -35,6 +37,7 @@ public class Movable : MonoBehaviour
         if (!agent.hasPath || agent.velocity.sqrMagnitude == 0f)
         {
           animator.SetInteger("FacingDirection", 4);
+          hasReachedPosition = true;
         }
       }
     }
