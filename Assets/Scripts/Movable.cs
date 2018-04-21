@@ -13,7 +13,6 @@ public class Movable : MonoBehaviour
 
   public void MoveTo(Vector3 position)
   {
-    Debug.Log(position);
     agent.SetDestination(position);
   }
 }

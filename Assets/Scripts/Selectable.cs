@@ -31,7 +31,6 @@ public class Selectable : MonoBehaviour
   {
     if (GetComponent<Movable>() && o.type == eOrderType.MOVE)
     {
-      Debug.Log("Moving Order");
       GetComponent<Movable>().MoveTo(o.position);
     }
 
