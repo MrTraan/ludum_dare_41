@@ -24,4 +24,9 @@ public class Selectable : MonoBehaviour {
 			transform.localScale = new Vector3(1, 1.0f, 1);
 	}
 
+	public void HandleOrder(Order o)
+	{
+		Debug.Log("Ignoring order");
+	}
+
 }

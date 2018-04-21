@@ -28,7 +28,7 @@ public class SelectionManager : MonoBehaviour
 			isSelecting = true;
 			mousePosition1 = Input.mousePosition;
 		}
-		
+
 		// If we let go of the left mouse button, end selection
 		if (Input.GetMouseButtonUp(0))
 		{
@@ -84,5 +84,14 @@ public class SelectionManager : MonoBehaviour
 		if (tag == "Cook")
 			return true;
 		return false;
+	}
+
+	public void DispatchOrder(Order o)
+	{
+		foreach (var s in selectables.Values)
+		{
+			if (s.isSelected)
+				s.HandleOrder(o);
+		}
 	}
 }

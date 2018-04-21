@@ -15,4 +15,15 @@ public class GameManager : MonoBehaviour
 		selectionManager = GetComponent<SelectionManager>();
 	}
 
+	private void Update()
+	{
+		if (Input.GetMouseButtonUp(1)) {
+			Order o;
+			o.type = eOrderType.MOVE;
+			o.direction = Camera.main.ScreenToViewportPoint(Input.mousePosition);
+			selectionManager.DispatchOrder(o);
+		}
+	}
+
+
 }
