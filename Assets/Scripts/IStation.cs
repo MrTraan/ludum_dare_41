@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 
 [RequireComponent(typeof(Task))]
-abstract public class IStation : MonoBehaviour {
+abstract public class IStation : ISelectable {
 	public Task task;
 	public Camera cam;
 
@@ -12,18 +12,24 @@ abstract public class IStation : MonoBehaviour {
 	private int currentWorkers = 0;
 
 	// Use this for initialization
-	virtual protected void Start () {
+	protected override void Start () {
+		base.Start();
 		cam = Camera.main;
 		task = GetComponent<Task>();
 	}
 	
-	virtual protected void Update () {
+	protected virtual void Update () {
 		if (!task.IsCompleted())
 			// Each worker has 1 work force for now
 			task.Progress(currentWorkers * 1.0f);
+		else
+		{
+			OnProduction();
+			task.Reset();
+		}
 	}
 
-	virtual protected void OnGUI()
+	protected virtual void OnGUI()
 	{
 		if (task.completion > 0.0f && task.completion < 100.0f)
 		{
@@ -34,7 +40,7 @@ abstract public class IStation : MonoBehaviour {
 	}
 
 	// returns false if station is full
-	virtual public bool AssignWorker()
+	public virtual bool AssignWorker()
 	{
 		if (currentWorkers < maxWorkers)
 		{
@@ -44,11 +50,13 @@ abstract public class IStation : MonoBehaviour {
 		return false;
 	}
 
-	virtual public void RemoveWorker()
+	public virtual void RemoveWorker()
 	{
 		currentWorkers -= 1;
 		if (currentWorkers < 0)
 			currentWorkers = 0;
 	}
+
+	protected virtual void OnProduction() { }
 
 }

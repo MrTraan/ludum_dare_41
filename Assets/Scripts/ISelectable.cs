@@ -7,12 +7,12 @@ abstract public class ISelectable : MonoBehaviour
 	public bool isSelected = false;
 
 	// Use this for initialization
-	void Start()
+	virtual protected void Start()
 	{
 		GameManager.selectionManager.AddSelectable(this);
 	}
 
-	private void OnDestroy()
+	virtual protected void OnDestroy()
 	{
 		if (GameManager.selectionManager)
 			GameManager.selectionManager.RemoveSelectable(this);

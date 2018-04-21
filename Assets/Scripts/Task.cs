@@ -1,4 +1,4 @@
-﻿using System.Collections;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -17,6 +17,11 @@ public class Task : MonoBehaviour {
 		completion += step * modifier;
 		if (completion > 100.0f)
 			completion = 100.0f;
+	}
+
+	public void Reset()
+	{
+		completion = 0;
 	}
 
 	public bool IsCompleted()
