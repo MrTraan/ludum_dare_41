@@ -4,10 +4,11 @@ using UnityEngine;
 
 public enum eOrderType
 {
-	MOVE,
+  MOVE,
 };
 
-public struct Order {
-	public eOrderType type;
-	public Vector3 direction;
+public struct Order
+{
+  public eOrderType type;
+  public Vector3 position;
 }

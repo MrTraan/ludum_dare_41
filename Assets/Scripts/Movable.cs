@@ -6,24 +6,14 @@ using UnityEngine.AI;
 public class Movable : MonoBehaviour
 {
   private NavMeshAgent agent;
-  // Use this for initialization
   void Start()
   {
     agent = GetComponent<NavMeshAgent>();
   }
 
-  void Update()
+  public void MoveTo(Vector3 position)
   {
-    if (Input.GetMouseButtonDown(0))
-    {
-      Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
-      RaycastHit hit;
-
-      if (Physics.Raycast(ray, out hit))
-      {
-        agent.SetDestination(hit.point);
-      }
-
-    }
+    Debug.Log(position);
+    agent.SetDestination(position);
   }
 }
