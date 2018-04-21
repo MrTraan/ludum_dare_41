@@ -25,11 +25,12 @@ public class Chef : ISelectable {
 			{
 				station.RemoveWorker();
 			}
-			GetComponent<Movable>().MoveTo(o.position);
+			movable.MoveTo(o.position);
 		}
 
 		if (o.type == eOrderType.WORK)
 		{
+			Debug.Log("Lets get to work");
 			if (assigned)
 			{
 				station.RemoveWorker();
@@ -39,7 +40,7 @@ public class Chef : ISelectable {
 				assigned = true;
 				station = o.station;
 			}
-			GetComponent<Movable>().MoveTo(o.position);
+			movable.MoveTo(o.position);
 		}
 	}
 }

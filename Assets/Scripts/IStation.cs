@@ -7,7 +7,7 @@ abstract public class IStation : ISelectable {
 	public Task task;
 	public Camera cam;
 
-	public int maxWorkers = 0;
+	public int maxWorkers = 1;
 	[SerializeField]
 	protected int currentWorkers = 0;
 
