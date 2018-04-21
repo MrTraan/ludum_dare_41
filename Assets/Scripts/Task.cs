@@ -12,9 +12,9 @@ public class Task : MonoBehaviour {
 	public Color progressBarColor = Color.green;
 	public Color progressBarBorderColor = Color.blue;
 
-	public void Progress()
+	public void Progress(float modifier = 1)
 	{
-		completion += step;
+		completion += step * modifier;
 		if (completion > 100.0f)
 			completion = 100.0f;
 	}
