@@ -24,6 +24,7 @@ GameObject:
   - component: {fileID: 23422794434614448}
   - component: {fileID: 114946334997367494}
   - component: {fileID: 195152926708247878}
+  - component: {fileID: 114110909500593140}
   m_Layer: 0
   m_Name: Agents
   m_TagString: Cook
@@ -37,8 +38,8 @@ Transform:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1892445269543688}
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 3.4899995, y: 0.14999986, z: -0.11380577}
+  m_LocalRotation: {x: -0, y: -0.861547, z: -0, w: 0.50767773}
+  m_LocalPosition: {x: -10.07492, y: 0.72333336, z: 1.3494571}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
@@ -97,6 +98,17 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 1, y: 1, z: 1}
   m_Center: {x: 0, y: 0, z: 0}
+--- !u!114 &114110909500593140
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1892445269543688}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: be6cb164678e8479a9588583c86a114f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!114 &114946334997367494
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -117,12 +129,12 @@ NavMeshAgent:
   m_GameObject: {fileID: 1892445269543688}
   m_Enabled: 1
   m_AgentTypeID: 0
-  m_Radius: 0.5
-  m_Speed: 3.5
-  m_Acceleration: 8
+  m_Radius: 1
+  m_Speed: 10
+  m_Acceleration: 1000
   avoidancePriority: 50
-  m_AngularSpeed: 120
-  m_StoppingDistance: 0
+  m_AngularSpeed: 1000
+  m_StoppingDistance: 1.5
   m_AutoTraverseOffMeshLink: 1
   m_AutoBraking: 1
   m_AutoRepath: 1
