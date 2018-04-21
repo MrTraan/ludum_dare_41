@@ -9,7 +9,7 @@ public class CameraController : MonoBehaviour {
 	void Update () {
 		Vector3 pos = transform.position;
 
-		if (Input.mousePosition.y >= Screen.height - panBorderThickness)
+		if (Input.mousePosition.z >= Screen.height - panBorderThickness)
 			pos.y += panSpeed * Time.deltaTime;
 		if (Input.mousePosition.y <= panBorderThickness)
 			pos.y -= panSpeed * Time.deltaTime;
