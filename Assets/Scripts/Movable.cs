@@ -5,7 +5,6 @@ using UnityEngine.AI;
 
 public class Movable : MonoBehaviour
 {
-  public float notMovingTreshold = 0.1f;
   private NavMeshAgent agent;
   private Animator animator;
   void Start()
@@ -24,21 +23,26 @@ public class Movable : MonoBehaviour
   {
     agent.SetDestination(position);
     Vector3 dir = transform.position - position;
-    animator.SetBool("IsMoving", true);
     SetFacingDirection(dir);
   }
 
   private void CheckMovement()
   {
-    float velocity = agent.velocity.magnitude;
-    if (velocity < notMovingTreshold)
-      animator.SetBool("IsMoving", false);
+    if (!agent.pathPending)
+    {
+      if (agent.remainingDistance <= agent.stoppingDistance)
+      {
+        if (!agent.hasPath || agent.velocity.sqrMagnitude == 0f)
+        {
+          animator.SetInteger("FacingDirection", 4);
+        }
+      }
+    }
   }
 
   private void SetFacingDirection(Vector3 dir)
   {
     float angle = Vector3.SignedAngle(dir, Vector3.forward, Vector3.up);
-    Debug.Log(angle);
     if (angle > -135 && angle < -45)
       animator.SetInteger("FacingDirection", 0);
     else if (angle > -45 && angle < 45)
