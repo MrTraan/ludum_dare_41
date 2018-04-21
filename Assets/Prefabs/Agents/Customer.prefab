@@ -23,6 +23,7 @@ GameObject:
   - component: {fileID: 114321177040784144}
   - component: {fileID: 114522037383893970}
   - component: {fileID: 114506196796210332}
+  - component: {fileID: 65406942063975732}
   m_Layer: 0
   m_Name: Customer
   m_TagString: Cook
@@ -74,6 +75,18 @@ Transform:
   m_Father: {fileID: 4123385120559426}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 90, y: 0, z: 0}
+--- !u!65 &65406942063975732
+BoxCollider:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1649228844634348}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 0.8538144, y: 1, z: 1.4548016}
+  m_Center: {x: -0.024364263, y: 0, z: 0.016242981}
 --- !u!95 &95903192678390398
 Animator:
   serializedVersion: 3
