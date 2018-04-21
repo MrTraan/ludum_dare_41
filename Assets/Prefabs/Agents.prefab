@@ -35,11 +35,11 @@ GameObject:
   serializedVersion: 5
   m_Component:
   - component: {fileID: 4493320233233954}
-  - component: {fileID: 114946334997367494}
+  - component: {fileID: 33409263445766870}
+  - component: {fileID: 65421444372732504}
+  - component: {fileID: 23422794434614448}
   - component: {fileID: 195152926708247878}
-  - component: {fileID: 114110909500593140}
-  - component: {fileID: 212630930016215262}
-  - component: {fileID: 95338004066369604}
+  - component: {fileID: 114112912608213418}
   m_Layer: 0
   m_Name: Agents
   m_TagString: Cook
@@ -81,17 +81,13 @@ Animator:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1892445269543688}
-  m_Enabled: 0
-  m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 9100000, guid: 0f8abb634c78740d8a5f304b8818950e, type: 2}
-  m_CullingMode: 0
-  m_UpdateMode: 0
-  m_ApplyRootMotion: 0
-  m_LinearVelocityBlending: 0
-  m_WarningMessage: 
-  m_HasTransformHierarchy: 1
-  m_AllowConstantClipSamplingOptimization: 1
---- !u!114 &114110909500593140
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 1, y: 1, z: 1}
+  m_Center: {x: 0, y: 0, z: 0}
+--- !u!114 &114112912608213418
 MonoBehaviour:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
@@ -99,18 +95,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 1892445269543688}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: be6cb164678e8479a9588583c86a114f, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
---- !u!114 &114946334997367494
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1892445269543688}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 239a9a9240a96924d91e63421db019b9, type: 3}
+  m_Script: {fileID: 11500000, guid: dd1e1baa04c3416409e2e473d1496789, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   isSelected: 0

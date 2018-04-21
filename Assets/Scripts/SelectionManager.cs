@@ -1,4 +1,4 @@
-﻿using System.Collections;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -7,14 +7,14 @@ public class SelectionManager : MonoBehaviour
 	private bool isSelecting = false;
 	private Vector3 mousePosition1;
 
-	private Dictionary<int, Selectable> selectables = new Dictionary<int, Selectable>();
+	private Dictionary<int, ISelectable> selectables = new Dictionary<int, ISelectable>();
 
-	public void AddSelectable(Selectable selectable)
+	public void AddSelectable(ISelectable selectable)
 	{
 		selectables.Add(selectable.GetInstanceID(), selectable);
 	}
 
-	public void RemoveSelectable(Selectable selectable)
+	public void RemoveSelectable(ISelectable selectable)
 	{
 		selectables.Remove(selectable.GetInstanceID());
 	}
@@ -75,7 +75,7 @@ public class SelectionManager : MonoBehaviour
 		if (Physics.Raycast(ray, out hit, 100, LayerMask.NameToLayer("Terrain")))
 		{
 			if (IsTagSelectable(hit.transform.tag))
-				hit.transform.gameObject.GetComponent<Selectable>().isSelected = true;
+				hit.transform.gameObject.GetComponent<ISelectable>().isSelected = true;
 		}
 	}
 
