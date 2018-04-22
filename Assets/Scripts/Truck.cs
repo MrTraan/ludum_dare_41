@@ -13,7 +13,7 @@ public class Truck : IStation
 
 	public float travelTime = 30;
 	public eState state = eState.TRAVEL;
-	private Dictionary<eResource, int> stock = new Dictionary<eResource, int>();
+	public OrderStation orderStation;
 	private float denre = 100;
 	private Animator animator;
 
