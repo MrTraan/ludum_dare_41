@@ -7,6 +7,7 @@ public enum eResource
 	GOLD,
 	VEGETABLES,
 	MEAT,
+	CHICKEN,
 };
 
 public class ResourceManager : MonoBehaviour
@@ -14,6 +15,8 @@ public class ResourceManager : MonoBehaviour
 	public int startingGold = 0;
 	public int startingVegetables = 0;
 	public int startingMeat = 0;
+	public int startingChicken = 0;
+
 	[SerializeField]
 	private Dictionary<eResource, int> stock = new Dictionary<eResource, int>();
 
@@ -22,7 +25,7 @@ public class ResourceManager : MonoBehaviour
 		stock[eResource.GOLD] = startingGold;
 		stock[eResource.VEGETABLES] = startingVegetables;
 		stock[eResource.MEAT] = startingMeat;
-
+		stock[eResource.CHICKEN] = startingChicken;
 	}
 
 	public int Get(eResource r)

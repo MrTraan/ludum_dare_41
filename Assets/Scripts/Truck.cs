@@ -13,8 +13,8 @@ public class Truck : IStation
 
 	public float travelTime = 30;
 	public eState state = eState.TRAVEL;
-	public OrderStation orderStation;
 	private float denre = 100;
+	public OrderStation orderStation;
 	private Animator animator;
 
 	protected override void Start()

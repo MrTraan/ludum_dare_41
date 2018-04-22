@@ -144,4 +144,26 @@ public class SelectionManager : MonoBehaviour
 		foreach (var s in selectables.Values)
 			s.isSelected = false;
 	}
+
+	public void DispatchOrderButtonClick(int id)
+	{
+		ISelectable firstSelected = null;
+		foreach (var s in selectables.Values)
+		{
+			if (s.isSelected)
+			{
+				firstSelected = s;
+				break;
+			}
+		}
+
+		if (firstSelected)
+		{
+			Order[] orders = firstSelected.GetOrderPanel();
+			Debug.Log(id);
+			if (id >= orders.Length)
+				return;
+			DispatchOrder(orders[id]);
+		}
+	}
 }

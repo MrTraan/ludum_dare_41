@@ -24,9 +24,9 @@ public class RecipeStation : IStation
 	}
 
 	static Order[] myOrders = {
+		new Order { type = eOrderType.COOK_RECIPE, recipeId = 0 },
 		new Order { type = eOrderType.COOK_RECIPE, recipeId = 1 },
 		new Order { type = eOrderType.COOK_RECIPE, recipeId = 2 },
-		new Order { type = eOrderType.COOK_RECIPE, recipeId = 3 },
 	};
 
 	public override Order[] GetOrderPanel()
