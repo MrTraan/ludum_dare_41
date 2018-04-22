@@ -37,7 +37,7 @@ public class RecipeStation : IStation
 
 		layout.pictograms = new Sprite[cookingStack.Count];
 		for (int i = 0; i < cookingStack.Count; i++)
-			layout.pictograms[i] = GameManager.pictoManager.Get(cookingStack[i].id + PictoManager.offsetRecipes);
+			layout.pictograms[i] = GameManager.pictoManager.Get(cookingStack[i].id + GameManager.pictoManager.offsetRecipes);
 
 		return layout;
 	}

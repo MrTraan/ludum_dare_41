@@ -9,7 +9,7 @@ public class PictoManager : MonoBehaviour {
 	[SerializeField]
 	private Sprite[] pictograms;
 
-	public static int offsetRecipes = 0;
+	public int offsetRecipes = 0;
 
 	public Sprite Get(int id)
 	{
