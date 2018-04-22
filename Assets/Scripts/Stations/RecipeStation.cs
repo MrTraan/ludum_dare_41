@@ -4,11 +4,7 @@ using UnityEngine;
 
 public class RecipeStation : IStation
 {
-	private List<Recipe> cookingStack;
-
-	protected override void Start()
-	{
-	}
+	private List<Recipe> cookingStack = new List<Recipe>();
 
 	protected override void Update()
 	{

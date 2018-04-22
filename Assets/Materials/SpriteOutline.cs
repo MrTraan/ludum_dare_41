@@ -1,6 +1,6 @@
-﻿using UnityEngine;
+using UnityEngine;
 
-[ExecuteInEditMode]
+[RequireComponent(typeof(ISelectable))]
 public class SpriteOutline : MonoBehaviour
 {
   public Color color = Color.white;
@@ -16,7 +16,7 @@ public class SpriteOutline : MonoBehaviour
     spriteRenderer = GetComponentInChildren<SpriteRenderer>();
     selectable = GetComponent<ISelectable>();
 
-    UpdateOutline(true);
+    UpdateOutline(false);
   }
 
   void OnDisable()
