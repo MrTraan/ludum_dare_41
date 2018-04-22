@@ -3,6 +3,20 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
+public enum eTaskLayoutType {
+	DEFAULT,
+	TASK_STACK,
+	MULTI_SELECTION,
+	TRUCK_ORDER,
+};
+
+public struct TaskLayout
+{
+	public eTaskLayoutType type;
+	public float completion;
+	public Sprite[] pictograms;
+};
+
 public class UIManager : MonoBehaviour
 {
 	public Text chickenAmount;
@@ -14,9 +28,15 @@ public class UIManager : MonoBehaviour
 
 	public Button[] orderButtons;
 
+	public GameObject multiSelectionLayout;
+	public GameObject taskStackLayout;
+	public GameObject truckOrderLayout;
+
+	public Image[] taskStackButtons;
+	public Slider taskStackCompletion;
+
 	void Start()
 	{
-
 	}
 
 	void Update()
@@ -34,17 +54,42 @@ public class UIManager : MonoBehaviour
 		GameManager.selectionManager.DispatchOrderButtonClick(id);
 	}
 
+	public void UpdateTaskPanel(TaskLayout layout)
+	{
+		if (layout.type == eTaskLayoutType.TASK_STACK)
+		{
+			taskStackLayout.SetActive(true);
+			multiSelectionLayout.SetActive(false);
+			truckOrderLayout.SetActive(false);
+
+			for (int i = 0; i < layout.pictograms.Length && i < taskStackButtons.Length; i++)
+			{
+				taskStackButtons[i].enabled = true;
+				taskStackButtons[i].sprite = layout.pictograms[i];
+			}
+			for (int i = layout.pictograms.Length; i < taskStackButtons.Length; i++)
+				taskStackButtons[i].enabled = false;
+
+			taskStackCompletion.value = layout.completion / 100.0f;
+		}
+
+		if (layout.type == eTaskLayoutType.DEFAULT)
+		{
+			multiSelectionLayout.SetActive(false);
+			taskStackLayout.SetActive(false);
+			truckOrderLayout.SetActive(false);
+		}
+	}
+
 	public void UpdateOrderPanel(Order[] orders)
 	{
 		for (int i = 0; i < orders.Length; i++)
 		{
-			orderButtons[i].GetComponent<Image>().color = Color.white;
+			orderButtons[i].interactable = true;
 		}
 		for (int i = orders.Length; i < 9; i++)
 		{
-			orderButtons[i].GetComponent<Image>().color = Color.red;
+			orderButtons[i].interactable = false;
 		}
-
 	}
-
 }

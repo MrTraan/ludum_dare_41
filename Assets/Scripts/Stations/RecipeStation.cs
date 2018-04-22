@@ -29,6 +29,20 @@ public class RecipeStation : IStation
 		new Order { type = eOrderType.COOK_RECIPE, recipeId = 2 },
 	};
 
+	public override TaskLayout GetTaskLayout()
+	{
+		TaskLayout layout = new TaskLayout();
+		layout.type = eTaskLayoutType.TASK_STACK;
+		layout.completion = task.completion;
+
+		layout.pictograms = new Sprite[cookingStack.Count];
+		for (int i = 0; i < cookingStack.Count; i++)
+			layout.pictograms[i] = GameManager.pictoManager.Get(cookingStack[i].id + PictoManager.offsetRecipes);
+
+		return layout;
+	}
+
+
 	public override Order[] GetOrderPanel()
 	{
 		return myOrders;
@@ -42,6 +56,7 @@ public class RecipeStation : IStation
 
 			if (!GameManager.resourceManager.ConsumeForRecipe(recipe))
 			{
+				Debug.Log("Not enough resources for this recipe");
 				// Not enough resource for this recipe
 				return;
 			}

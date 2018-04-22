@@ -74,6 +74,7 @@ public class SelectionManager : MonoBehaviour
 			isSelecting = false;
 			GameManager.uiManager.UpdateOrderPanel(GetCurrentOrderPanel());
 		}
+		GameManager.uiManager.UpdateTaskPanel(GetCurrentTaskLayout());
 	}
 
 	void OnGUI()
@@ -155,9 +156,20 @@ public class SelectionManager : MonoBehaviour
 		return (new Order[0]);
 	}
 
+	public TaskLayout GetCurrentTaskLayout()
+	{
+		foreach (var s in selectables.Values)
+		{
+			if (s.isSelected)
+				return s.GetTaskLayout();
+		}
+		return (ISelectable.defaultLayout);
+	}
+
 	public void DispatchOrderButtonClick(int id)
 	{
 		Order[] orders = GetCurrentOrderPanel();
+		Debug.Log("Dispatching order " + id);
 		if (id >= orders.Length)
 			return;
 		DispatchOrder(orders[id]);
