@@ -4,42 +4,48 @@ using UnityEngine;
 
 public enum eResource
 {
-	GOLD,
-	VEGETABLES,
-	MEAT,
+  GOLD,
+  VEGETABLES,
+  MEAT,
 };
 
 public class ResourceManager : MonoBehaviour
 {
-	[SerializeField]
-	private Dictionary<eResource, int> stock = new Dictionary<eResource, int>();
+  [SerializeField]
+  private Dictionary<eResource, int> stock = new Dictionary<eResource, int>();
 
-	private void Start()
-	{
-		stock[eResource.GOLD] = 0;
-		stock[eResource.VEGETABLES] = 0;
-		stock[eResource.MEAT] = 1000;
-		
-	}
+  private void Start()
+  {
+    stock[eResource.GOLD] = 0;
+    stock[eResource.VEGETABLES] = 0;
+    stock[eResource.MEAT] = 1000;
 
-	public int Get(eResource r)
-	{
-		return stock[r];
-	}
+  }
 
-	public int Add(eResource r, int amount)
-	{
-		stock[r] += amount;
-		return stock[r];
-	}
+  public int Get(eResource r)
+  {
+    return stock[r];
+  }
 
-	public bool Consume(eResource r, int amount)
-	{
-		if (stock[r] >= amount)
-		{
-			stock[r] -= amount;
-			return true;
-		}
-		return false;
-	}
+  public Dictionary<eResource, int> GetOrder()
+  {
+    return stock;
+  }
+
+
+  public int Add(eResource r, int amount)
+  {
+    stock[r] += amount;
+    return stock[r];
+  }
+
+  public bool Consume(eResource r, int amount)
+  {
+    if (stock[r] >= amount)
+    {
+      stock[r] -= amount;
+      return true;
+    }
+    return false;
+  }
 }

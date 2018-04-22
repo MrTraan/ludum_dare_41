@@ -37,10 +37,7 @@ public class SelectionManager : MonoBehaviour
         if (IsWithinSelectionBounds(s.gameObject))
           s.isSelected = true;
         else if (!Input.GetKey(KeyCode.LeftShift))
-        {
-          // Debug.Log("TA MERE");
           s.isSelected = false;
-        }
       }
       SelectUnitByClick();
       isSelecting = false;
