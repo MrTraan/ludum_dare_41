@@ -17,4 +17,12 @@ public class PictoManager : MonoBehaviour {
 			return defaultSprite;
 		return pictograms[id];
 	}
+
+	public Sprite GetRecipe(int recipeId)
+	{
+		int id = recipeId + offsetRecipes;
+		if (id > pictograms.Length)
+			return defaultSprite;
+		return pictograms[id];
+	}
 }
