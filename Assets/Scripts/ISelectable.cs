@@ -28,5 +28,12 @@ abstract public class ISelectable : MonoBehaviour
 		return new Order[0];
 	}
 
+	public static TaskLayout defaultLayout = new TaskLayout { type = eTaskLayoutType.DEFAULT };
+
+	virtual public TaskLayout GetTaskLayout()
+	{
+		return defaultLayout;
+	}
+
 	public abstract void HandleOrder(Order o);
 }
