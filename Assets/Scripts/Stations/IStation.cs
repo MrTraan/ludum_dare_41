@@ -20,19 +20,6 @@ abstract public class IStation : ISelectable
     task = GetComponent<Task>();
   }
 
-  protected override void Update()
-  {
-    if (task.running && task.IsCompleted())
-    {
-      OnProduction();
-      task.Reset();
-    }
-    else if (task.running)
-    {
-      task.Progress(currentWorkers * 1.0f);
-    }
-  }
-
   protected virtual void OnGUI()
   {
     if (task.running)
@@ -60,7 +47,4 @@ abstract public class IStation : ISelectable
     if (currentWorkers < 0)
       currentWorkers = 0;
   }
-
-  protected virtual void OnProduction() { }
-
 }

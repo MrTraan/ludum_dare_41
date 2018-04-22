@@ -4,6 +4,7 @@ using UnityEngine;
 
 [RequireComponent(typeof(SelectionManager))]
 [RequireComponent(typeof(ResourceManager))]
+[RequireComponent(typeof(RecipeManager))]
 public class GameManager : MonoBehaviour
 {
 	public static GameManager instance { get; private set; }
@@ -12,11 +13,14 @@ public class GameManager : MonoBehaviour
 
 	public static ResourceManager resourceManager { get; private set; }
 
+	public static RecipeManager recipeManager { get; private set; }
+
 	void Awake()
 	{
 		instance = this;
 		selectionManager = GetComponent<SelectionManager>();
 		resourceManager = GetComponent<ResourceManager>();
+		recipeManager = GetComponent<RecipeManager>();
 	}
 
 	private void Update()

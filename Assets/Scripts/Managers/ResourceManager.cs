@@ -22,7 +22,7 @@ public class ResourceManager : MonoBehaviour
 		stock[eResource.GOLD] = startingGold;
 		stock[eResource.VEGETABLES] = startingVegetables;
 		stock[eResource.MEAT] = startingMeat;
-		
+
 	}
 
 	public int Get(eResource r)
@@ -44,5 +44,20 @@ public class ResourceManager : MonoBehaviour
 			return true;
 		}
 		return false;
+	}
+
+	public bool ConsumeForRecipe(Recipe recipe)
+	{
+		foreach (var i in recipe.ingredients)
+		{
+			if (stock[i.resource] < i.amount)
+			{
+				// Not enough ressource for this recipe
+				return false;
+			}
+		}
+		foreach (var i in recipe.ingredients)
+			stock[i.resource] -= i.amount;
+		return true;
 	}
 }
