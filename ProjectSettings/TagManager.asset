@@ -51,6 +51,9 @@ TagManager:
   - name: Furnitures
     uniqueID: 3595778897
     locked: 0
+  - name: Outline
+    uniqueID: 2923844001
+    locked: 0
   - name: Agent
     uniqueID: 2192833047
     locked: 0
