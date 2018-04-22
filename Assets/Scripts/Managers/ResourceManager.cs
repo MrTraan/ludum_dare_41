@@ -4,63 +4,73 @@ using UnityEngine;
 
 public enum eResource
 {
-	GOLD,
-	VEGETABLES,
-	MEAT,
-	CHICKEN,
+  GOLD,
+  CHICKEN,
+  STEAK,
+  FISH,
+  PEAS,
+  CAROT,
+  POTATOES,
+
 };
 
 public class ResourceManager : MonoBehaviour
 {
-	public int startingGold = 0;
-	public int startingVegetables = 0;
-	public int startingMeat = 0;
-	public int startingChicken = 0;
+  public int startingGold = 0;
+  public int startingSteak = 0;
+  public int startingFish = 0;
+  public int startingChicken = 0;
+  public int startingCarot = 0;
+  public int startingPea = 0;
+  public int startingPotato = 0;
 
-	[SerializeField]
-	private Dictionary<eResource, int> stock = new Dictionary<eResource, int>();
+  [SerializeField]
+  private Dictionary<eResource, int> stock = new Dictionary<eResource, int>();
 
-	private void Start()
-	{
-		stock[eResource.GOLD] = startingGold;
-		stock[eResource.VEGETABLES] = startingVegetables;
-		stock[eResource.MEAT] = startingMeat;
-		stock[eResource.CHICKEN] = startingChicken;
-	}
+  private void Start()
+  {
+    stock[eResource.GOLD] = startingGold;
+    stock[eResource.FISH] = startingChicken;
+    stock[eResource.POTATOES] = startingFish;
+    stock[eResource.CHICKEN] = startingSteak;
+    stock[eResource.CHICKEN] = startingPea;
+    stock[eResource.CHICKEN] = startingPotato;
+    stock[eResource.CHICKEN] = startingCarot;
+  }
 
-	public int Get(eResource r)
-	{
-		return stock[r];
-	}
+  public int Get(eResource r)
+  {
+    return stock[r];
+  }
 
-	public int Add(eResource r, int amount)
-	{
-		stock[r] += amount;
-		return stock[r];
-	}
+  public int Add(eResource r, int amount)
+  {
+    stock[r] += amount;
+    return stock[r];
+  }
 
-	public bool Consume(eResource r, int amount)
-	{
-		if (stock[r] >= amount)
-		{
-			stock[r] -= amount;
-			return true;
-		}
-		return false;
-	}
+  public bool Consume(eResource r, int amount)
+  {
+    if (stock[r] >= amount)
+    {
+      stock[r] -= amount;
+      return true;
+    }
+    return false;
+  }
 
-	public bool ConsumeForRecipe(Recipe recipe)
-	{
-		foreach (var i in recipe.ingredients)
-		{
-			if (stock[i.resource] < i.amount)
-			{
-				// Not enough ressource for this recipe
-				return false;
-			}
-		}
-		foreach (var i in recipe.ingredients)
-			stock[i.resource] -= i.amount;
-		return true;
-	}
+  public bool ConsumeForRecipe(Recipe recipe)
+  {
+    foreach (var i in recipe.ingredients)
+    {
+      if (stock[i.resource] < i.amount)
+      {
+        // Not enough ressource for this recipe
+        return false;
+      }
+    }
+    foreach (var i in recipe.ingredients)
+      stock[i.resource] -= i.amount;
+    return true;
+  }
 }
