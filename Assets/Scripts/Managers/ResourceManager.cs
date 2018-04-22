@@ -11,7 +11,6 @@ public enum eResource
   PEAS,
   CAROT,
   POTATOES,
-
 };
 
 public class ResourceManager : MonoBehaviour
@@ -30,12 +29,12 @@ public class ResourceManager : MonoBehaviour
   private void Start()
   {
     stock[eResource.GOLD] = startingGold;
-    stock[eResource.FISH] = startingChicken;
-    stock[eResource.POTATOES] = startingFish;
-    stock[eResource.CHICKEN] = startingSteak;
-    stock[eResource.CHICKEN] = startingPea;
-    stock[eResource.CHICKEN] = startingPotato;
-    stock[eResource.CHICKEN] = startingCarot;
+    stock[eResource.CHICKEN] = startingChicken;
+    stock[eResource.STEAK] = startingSteak;
+    stock[eResource.FISH] = startingFish;
+    stock[eResource.PEAS] = startingPea;
+    stock[eResource.CAROT] = startingCarot;
+    stock[eResource.POTATOES] = startingPotato;
   }
 
   public int Get(eResource r)

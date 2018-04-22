@@ -52,7 +52,7 @@ public class SelectionManager : MonoBehaviour
 				underSelection.Add(underMouse);
 			}
 
-			if (!Input.GetKey(KeyCode.LeftShift))
+			if (!Input.GetKey(KeyCode.LeftShift) && underSelection.Count > 0)
 				DeselectAll();
 
 			foreach (int id in underSelection)
@@ -72,7 +72,7 @@ public class SelectionManager : MonoBehaviour
 			}
 
 			isSelecting = false;
-
+			GameManager.uiManager.UpdateOrderPanel(GetCurrentOrderPanel());
 		}
 	}
 
@@ -125,7 +125,7 @@ public class SelectionManager : MonoBehaviour
 
 	private bool IsTagSelectable(string tag)
 	{
-		if (tag == "Cook" || tag == "Station" || tag == "Truck")
+		if (tag == "Cook" || tag == "Station" || tag == "Truck" || tag == "OrderStation")
 			return true;
 		return false;
 	}
@@ -145,25 +145,21 @@ public class SelectionManager : MonoBehaviour
 			s.isSelected = false;
 	}
 
-	public void DispatchOrderButtonClick(int id)
+	public Order[] GetCurrentOrderPanel()
 	{
-		ISelectable firstSelected = null;
 		foreach (var s in selectables.Values)
 		{
 			if (s.isSelected)
-			{
-				firstSelected = s;
-				break;
-			}
+				return s.GetOrderPanel();
 		}
+		return (new Order[0]);
+	}
 
-		if (firstSelected)
-		{
-			Order[] orders = firstSelected.GetOrderPanel();
-			Debug.Log(id);
-			if (id >= orders.Length)
-				return;
-			DispatchOrder(orders[id]);
-		}
+	public void DispatchOrderButtonClick(int id)
+	{
+		Order[] orders = GetCurrentOrderPanel();
+		if (id >= orders.Length)
+			return;
+		DispatchOrder(orders[id]);
 	}
 }
