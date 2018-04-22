@@ -86,6 +86,8 @@ public class UIManager : MonoBehaviour
 		for (int i = 0; i < orders.Length; i++)
 		{
 			orderButtons[i].interactable = true;
+			if (orders[i].type == eOrderType.COOK_RECIPE)
+				orderButtons[i].GetComponent<Image>().sprite = GameManager.pictoManager.GetRecipe(orders[i].recipeId);
 		}
 		for (int i = orders.Length; i < 9; i++)
 		{
