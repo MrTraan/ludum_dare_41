@@ -23,6 +23,17 @@ public class RecipeStation : IStation
 			task.Begin();
 	}
 
+	static Order[] myOrders = {
+		new Order(eOrderType.COOK_RECIPE, 1),
+		new Order(eOrderType.COOK_RECIPE, 2),
+		new Order(eOrderType.COOK_RECIPE, 3)
+	};
+
+	public override Order[] GetOrderPanel()
+	{
+		return myOrders;
+	}
+
 	public override void HandleOrder(Order o)
 	{
 		if (o.type == eOrderType.COOK_RECIPE)
