@@ -45,3 +45,12 @@ TagManager:
   - name: Default
     uniqueID: 0
     locked: 0
+  - name: Background
+    uniqueID: 1998620355
+    locked: 0
+  - name: Furnitures
+    uniqueID: 3595778897
+    locked: 0
+  - name: Agent
+    uniqueID: 2192833047
+    locked: 0

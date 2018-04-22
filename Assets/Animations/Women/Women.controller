@@ -5,7 +5,7 @@ AnimatorController:
   m_ObjectHideFlags: 0
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
-  m_Name: Customer
+  m_Name: Women
   serializedVersion: 5
   m_AnimatorParameters:
   - m_Name: FacingDirection
@@ -239,7 +239,7 @@ AnimatorState:
   m_MirrorParameterActive: 0
   m_CycleOffsetParameterActive: 0
   m_TimeParameterActive: 0
-  m_Motion: {fileID: 7400000, guid: 88c8c8bc544584e458af2c7197f36d96, type: 2}
+  m_Motion: {fileID: 7400000, guid: dd0cb12a79947427c8ee018ae2903232, type: 2}
   m_Tag: 
   m_SpeedParameter: 
   m_MirrorParameter: 
@@ -265,7 +265,7 @@ AnimatorState:
   m_MirrorParameterActive: 0
   m_CycleOffsetParameterActive: 0
   m_TimeParameterActive: 0
-  m_Motion: {fileID: 7400000, guid: 7893a9c40e1e8405db81b2b2e54f4922, type: 2}
+  m_Motion: {fileID: 7400000, guid: 0d235e3730c79434fabb4f6d7acc1e5d, type: 2}
   m_Tag: 
   m_SpeedParameter: 
   m_MirrorParameter: 
@@ -291,7 +291,7 @@ AnimatorState:
   m_MirrorParameterActive: 0
   m_CycleOffsetParameterActive: 0
   m_TimeParameterActive: 0
-  m_Motion: {fileID: 7400000, guid: ab56bc4186af540ebb89cbc56225100f, type: 2}
+  m_Motion: {fileID: 7400000, guid: 7e03516d035374b8ea20c7d940e6c37e, type: 2}
   m_Tag: 
   m_SpeedParameter: 
   m_MirrorParameter: 
@@ -320,7 +320,7 @@ AnimatorState:
   m_MirrorParameterActive: 0
   m_CycleOffsetParameterActive: 0
   m_TimeParameterActive: 0
-  m_Motion: {fileID: 7400000, guid: be1b4bc2c11084186bcb1f9bc5d45979, type: 2}
+  m_Motion: {fileID: 7400000, guid: ed231689a2160429aae086d93a97edc8, type: 2}
   m_Tag: 
   m_SpeedParameter: 
   m_MirrorParameter: 
@@ -346,7 +346,7 @@ AnimatorState:
   m_MirrorParameterActive: 0
   m_CycleOffsetParameterActive: 0
   m_TimeParameterActive: 0
-  m_Motion: {fileID: 7400000, guid: 1b9f502a6c9de44a48f7b71e05f47bd5, type: 2}
+  m_Motion: {fileID: 7400000, guid: a5940f3033da2430798304086b9cc572, type: 2}
   m_Tag: 
   m_SpeedParameter: 
   m_MirrorParameter: 
