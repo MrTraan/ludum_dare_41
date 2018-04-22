@@ -39,6 +39,22 @@ public class GameManager : MonoBehaviour
 					o.station = hit.transform.gameObject.GetComponent<IStation>();
 					selectionManager.DispatchOrder(o);
 				}
+				else if (hit.transform.tag == "Truck")
+				{
+					if (hit.transform.gameObject.GetComponent<Truck>().state == Truck.eState.UNLOADING)
+					{
+						o.type = eOrderType.WORK;
+						o.position = hit.point;
+						o.station = hit.transform.gameObject.GetComponent<IStation>();
+						selectionManager.DispatchOrder(o);
+					}
+					else
+					{
+						o.type = eOrderType.MOVE;
+						o.position = hit.point;
+						selectionManager.DispatchOrder(o);
+					}
+				}
 				else
 				{
 					o.type = eOrderType.MOVE;
