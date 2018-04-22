@@ -4,13 +4,14 @@ using UnityEngine;
 
 public enum eOrderType
 {
-	MOVE,
-	WORK,
+  NONE,
+  MOVE,
+  WORK,
 };
 
 public struct Order
 {
-	public eOrderType type;
-	public Vector3 position;
-	public IStation station;
+  public eOrderType type;
+  public Vector3 position;
+  public IStation station;
 }
