@@ -4,11 +4,7 @@ using UnityEngine;
 
 public class RecipeStation : IStation
 {
-	private List<Recipe> cookingStack;
-
-	protected override void Start()
-	{
-	}
+	private List<Recipe> cookingStack = new List<Recipe>();
 
 	protected override void Update()
 	{
@@ -25,6 +21,17 @@ public class RecipeStation : IStation
 		}
 		if (!task.running && currentWorkers > 0 && cookingStack.Count > 0)
 			task.Begin();
+	}
+
+	static Order[] myOrders = {
+		new Order(eOrderType.COOK_RECIPE, 1),
+		new Order(eOrderType.COOK_RECIPE, 2),
+		new Order(eOrderType.COOK_RECIPE, 3)
+	};
+
+	public override Order[] GetOrderPanel()
+	{
+		return myOrders;
 	}
 
 	public override void HandleOrder(Order o)
