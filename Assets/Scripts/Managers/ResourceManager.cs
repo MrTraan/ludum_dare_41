@@ -11,14 +11,17 @@ public enum eResource
 
 public class ResourceManager : MonoBehaviour
 {
+  public int startingGold = 0;
+  public int startingVegetables = 0;
+  public int startingMeat = 0;
   [SerializeField]
   private Dictionary<eResource, int> stock = new Dictionary<eResource, int>();
 
   private void Start()
   {
-    stock[eResource.GOLD] = 0;
-    stock[eResource.VEGETABLES] = 0;
-    stock[eResource.MEAT] = 1000;
+    stock[eResource.GOLD] = startingGold;
+    stock[eResource.VEGETABLES] = startingVegetables;
+    stock[eResource.MEAT] = startingMeat;
 
   }
 
@@ -26,12 +29,6 @@ public class ResourceManager : MonoBehaviour
   {
     return stock[r];
   }
-
-  public Dictionary<eResource, int> GetOrder()
-  {
-    return stock;
-  }
-
 
   public int Add(eResource r, int amount)
   {
