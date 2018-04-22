@@ -11,12 +11,12 @@ public class SelectionManager : MonoBehaviour
 
 	public void AddSelectable(ISelectable selectable)
 	{
-		selectables.Add(selectable.GetInstanceID(), selectable);
+		selectables.Add(selectable.gameObject.GetInstanceID(), selectable);
 	}
 
 	public void RemoveSelectable(ISelectable selectable)
 	{
-		selectables.Remove(selectable.GetInstanceID());
+		selectables.Remove(selectable.gameObject.GetInstanceID());
 	}
 
 	void Update()
@@ -24,7 +24,6 @@ public class SelectionManager : MonoBehaviour
 		// If we press the left mouse button, save mouse location and begin selection
 		if (Input.GetMouseButtonDown(0))
 		{
-			SelectUnitByClick();
 			isSelecting = true;
 			mousePosition1 = Input.mousePosition;
 		}
@@ -32,34 +31,47 @@ public class SelectionManager : MonoBehaviour
 		// If we let go of the left mouse button, end selection
 		if (Input.GetMouseButtonUp(0))
 		{
+			bool hasCookSelected = false;
+			List<int> underSelection = new List<int>();
+
 			foreach (var s in selectables.Values)
 			{
 				if (IsWithinSelectionBounds(s.gameObject))
-					s.isSelected = true;
-				else if (!Input.GetKey(KeyCode.LeftShift))
-					s.isSelected = false;
-			}
-			SelectUnitByClick();
-			isSelecting = false;
-
-			bool hasCookSelected = false;
-			foreach (var s in selectables.Values)
-			{
-				if (s.gameObject.tag == "Cook" && s.isSelected)
 				{
+					if (s.gameObject.tag == "Cook")
+						hasCookSelected = true;
+					underSelection.Add(s.gameObject.GetInstanceID());
+				}
+			}
+
+			int underMouse = UnitUnderMouseId();
+			if (underMouse != 0)
+			{
+				if (selectables[underMouse].gameObject.tag == "Cook")
 					hasCookSelected = true;
+				underSelection.Add(underMouse);
+			}
+
+			if (!Input.GetKey(KeyCode.LeftShift))
+				DeselectAll();
+
+			foreach (int id in underSelection)
+			{
+				if (hasCookSelected)
+				{
+					if (selectables[id].gameObject.tag != "Cook")
+						selectables[id].isSelected = false;
+					else
+						selectables[id].isSelected = true;
+				}
+				else
+				{
+					selectables[id].isSelected = true;
 					break;
 				}
 			}
 
-			if (hasCookSelected)
-			{
-				foreach (var s in selectables.Values)
-				{
-					if (s.gameObject.tag != "Cook")
-						s.isSelected = false;
-				}
-			}
+			isSelecting = false;
 
 		}
 	}
@@ -99,9 +111,21 @@ public class SelectionManager : MonoBehaviour
 		}
 	}
 
+	public int UnitUnderMouseId()
+	{
+		Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
+		RaycastHit hit;
+		if (Physics.Raycast(ray, out hit))
+		{
+			if (IsTagSelectable(hit.transform.tag))
+				return hit.transform.gameObject.GetInstanceID();
+		}
+		return 0;
+	}
+
 	private bool IsTagSelectable(string tag)
 	{
-		if (tag == "Cook" || tag == "Station")
+		if (tag == "Cook" || tag == "Station" || tag == "Truck")
 			return true;
 		return false;
 	}
@@ -113,5 +137,11 @@ public class SelectionManager : MonoBehaviour
 			if (s.isSelected)
 				s.HandleOrder(o);
 		}
+	}
+
+	public void DeselectAll()
+	{
+		foreach (var s in selectables.Values)
+			s.isSelected = false;
 	}
 }
