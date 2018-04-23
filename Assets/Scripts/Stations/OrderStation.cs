@@ -6,6 +6,8 @@ public class OrderStation : ISelectable
 {
 	private Dictionary<eResource, int> orderedResources = new Dictionary<eResource, int>();
 
+	public Truck truck;
+
 	protected override void Start()
 	{
 		base.Start();
@@ -19,6 +21,7 @@ public class OrderStation : ISelectable
 	new Order { type = eOrderType.ORDER, resource = eResource.PEAS, cost = 10 },
 	new Order { type = eOrderType.ORDER, resource = eResource.CAROT, cost = 10 },
 	new Order { type = eOrderType.ORDER, resource = eResource.POTATOES, cost = 10 },
+	new Order { type = eOrderType.SEND_TRUCK },
   };
 
 	public override void HandleOrder(Order o)
@@ -27,6 +30,11 @@ public class OrderStation : ISelectable
 		{
 			if (GameManager.resourceManager.Consume(eResource.GOLD, o.cost))
 				orderedResources[o.resource]++;
+		}
+		if (o.type == eOrderType.SEND_TRUCK)
+		{
+			truck.GoShopping(orderedResources);
+			Reset();
 		}
 	}
 

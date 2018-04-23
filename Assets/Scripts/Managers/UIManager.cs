@@ -3,7 +3,8 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
-public enum eTaskLayoutType {
+public enum eTaskLayoutType
+{
 	DEFAULT,
 	TASK_STACK,
 	MULTI_SELECTION,
@@ -48,6 +49,8 @@ public class UIManager : MonoBehaviour
 	public Sprite defaultOrderSprite;
 
 	public Image[] commands;
+
+	public Truck truck;
 
 	void Start()
 	{
@@ -159,6 +162,14 @@ public class UIManager : MonoBehaviour
 			}
 			if (orders[i].type == eOrderType.ORDER)
 				orderButtons[i].GetComponent<Image>().sprite = GameManager.pictoManager.GetTransformed((int)orders[i].resource);
+
+			if (orders[i].type == eOrderType.SEND_TRUCK)
+			{
+				if (truck.state == Truck.eState.EMPTY)
+					orderButtons[i].interactable = true;
+				else
+					orderButtons[i].interactable = false;
+			}
 		}
 		for (int i = orders.Length; i < 9; i++)
 		{

@@ -9,19 +9,20 @@ public class Truck : IStation
 	{
 		TRAVEL,
 		UNLOADING,
+		EMPTY,
 	}
 
+	public eState state = eState.EMPTY;
 	public float travelTime = 30;
-	public eState state = eState.TRAVEL;
-	private float denre = 100;
-	public OrderStation orderStation;
+
 	private Animator animator;
+	private Dictionary<eResource, int> stock;
 
 	protected override void Start()
 	{
 		base.Start();
-		StartCoroutine("Travel");
 		animator = GetComponentInChildren<Animator>();
+		animator.SetTrigger("Arrive");
 	}
 
 	protected override void Update()
@@ -29,44 +30,33 @@ public class Truck : IStation
 		base.Update();
 
 
-		if (state == eState.UNLOADING && CheckEmptyness())
+		if (state == eState.UNLOADING && task.IsCompleted())
 		{
+			foreach (var command in stock)
+				GameManager.resourceManager.Add(command.Key, command.Value);
 			task.Reset();
-			state = eState.TRAVEL;
-			StartCoroutine("Travel");
-			animator.SetTrigger("Leave");
+			state = eState.EMPTY;
 		}
 		else if (state == eState.UNLOADING)
 		{
-			denre -= 0.1f * currentWorkers;
-			task.completion = 100 - denre;
+			task.Progress(currentWorkers * 1.0f);
 		}
 	}
 
-	private bool CheckEmptyness()
+	public void GoShopping(Dictionary<eResource, int> shoppingList)
 	{
-		// foreach (var command in stock)
-		// {
-		//   if (command.Value != 0)
-		//     return false;
-		// }
-		// return true;
-		if (denre < 0)
-			return true;
-		return false;
-	}
-
-	private void GetOrder()
-	{
-		// stock = GameManager.resourceManager.GetOrder();
-		denre = 100;
-		task.Begin();
+		stock = new Dictionary<eResource, int>(shoppingList);
+		StartCoroutine("Travel");
+		animator = GetComponentInChildren<Animator>();
 	}
 
 	IEnumerator Travel()
 	{
+		animator.SetTrigger("Leave");
+		state = eState.TRAVEL;
+
 		yield return new WaitForSeconds(travelTime);
-		GetOrder();
+
 		state = eState.UNLOADING;
 		animator.SetTrigger("Arrive");
 	}
