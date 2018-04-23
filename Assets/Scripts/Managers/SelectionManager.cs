@@ -4,200 +4,207 @@ using UnityEngine;
 
 public class SelectionManager : MonoBehaviour
 {
-	private bool isSelecting = false;
-	private Vector3 mousePosition1;
+  private bool isSelecting = false;
+  private Vector3 mousePosition1;
 
-	private Dictionary<int, ISelectable> selectables = new Dictionary<int, ISelectable>();
+  private Dictionary<int, ISelectable> selectables = new Dictionary<int, ISelectable>();
 
-	public void AddSelectable(ISelectable selectable)
-	{
-		selectables.Add(selectable.gameObject.GetInstanceID(), selectable);
-	}
+  public void AddSelectable(ISelectable selectable)
+  {
+    selectables.Add(selectable.gameObject.GetInstanceID(), selectable);
+  }
 
-	public void RemoveSelectable(ISelectable selectable)
-	{
-		selectables.Remove(selectable.gameObject.GetInstanceID());
-	}
+  public void RemoveSelectable(ISelectable selectable)
+  {
+    selectables.Remove(selectable.gameObject.GetInstanceID());
+  }
 
-	void Update()
-	{
-		// If we press the left mouse button, save mouse location and begin selection
-		if (Input.GetMouseButtonDown(0))
-		{
-			isSelecting = true;
-			mousePosition1 = Input.mousePosition;
-		}
+  void Update()
+  {
+    // If we press the left mouse button, save mouse location and begin selection
+    if (Input.GetMouseButtonDown(0))
+    {
+      isSelecting = true;
+      mousePosition1 = Input.mousePosition;
+    }
 
-		// If we let go of the left mouse button, end selection
-		if (Input.GetMouseButtonUp(0))
-		{
-			bool hasCookSelected = false;
-			List<int> underSelection = new List<int>();
+    // If we let go of the left mouse button, end selection
+    if (Input.GetMouseButtonUp(0))
+    {
+      bool hasCookSelected = false;
+      List<int> underSelection = new List<int>();
 
-			foreach (var s in selectables.Values)
-			{
-				if (IsWithinSelectionBounds(s.gameObject))
-				{
-					if (s.gameObject.tag == "Cook")
-						hasCookSelected = true;
-					underSelection.Add(s.gameObject.GetInstanceID());
-				}
-			}
+      foreach (var s in selectables.Values)
+      {
+        if (IsWithinSelectionBounds(s.gameObject))
+        {
+          if (s.gameObject.tag == "Cook")
+            hasCookSelected = true;
+          underSelection.Add(s.gameObject.GetInstanceID());
+        }
+      }
 
-			int underMouse = UnitUnderMouseId();
-			if (underMouse != 0)
-			{
-				if (selectables[underMouse].gameObject.tag == "Cook")
-					hasCookSelected = true;
-				underSelection.Add(underMouse);
-			}
+      int underMouse = UnitUnderMouseId();
+      if (underMouse != 0)
+      {
+        if (selectables[underMouse].gameObject.tag == "Cook")
+          hasCookSelected = true;
+        underSelection.Add(underMouse);
+      }
 
-			if (!Input.GetKey(KeyCode.LeftShift) && underSelection.Count > 0)
-				DeselectAll();
+      if (!Input.GetKey(KeyCode.LeftShift) && underSelection.Count > 0)
+        DeselectAll();
 
-			foreach (int id in underSelection)
-			{
-				if (hasCookSelected)
-				{
-					if (selectables[id].gameObject.tag != "Cook")
-						selectables[id].isSelected = false;
-					else
-						selectables[id].isSelected = true;
-				}
-				else
-				{
-					selectables[id].isSelected = true;
-					break;
-				}
-			}
+      foreach (int id in underSelection)
+      {
+        if (hasCookSelected)
+        {
+          if (selectables[id].gameObject.tag != "Cook")
+            selectables[id].isSelected = false;
+          else
+            selectables[id].isSelected = true;
+        }
+        else
+        {
+          selectables[id].isSelected = true;
+          break;
+        }
+      }
 
-			isSelecting = false;
-			GameManager.uiManager.UpdateOrderPanel(GetCurrentOrderPanel());
-		}
-		GameManager.uiManager.UpdateTaskPanel(GetCurrentTaskLayout());
-	}
+      if (hasCookSelected)
+      {
+        AudioSource audio = AudioManager.instance.GetComponent<AudioSource>();
+        audio.clip = AudioManager.instance.GetRandomTalk();
+        audio.Play();
+      }
 
-	void OnGUI()
-	{
-		if (isSelecting)
-		{
-			// Create a rect from both mouse positions
-			var rect = Utils.GetScreenRect(mousePosition1, Input.mousePosition);
-			Utils.DrawScreenRectFill(rect, new Color(0.8f, 0.8f, 0.95f, 0.25f));
-			Utils.DrawScreenRect(rect, new Color(0.8f, 0.8f, 0.95f), 2);
-		}
-	}
+      isSelecting = false;
+      GameManager.uiManager.UpdateOrderPanel(GetCurrentOrderPanel());
+    }
+    GameManager.uiManager.UpdateTaskPanel(GetCurrentTaskLayout());
+  }
 
-	public bool IsWithinSelectionBounds(GameObject gameObject)
-	{
-		if (!isSelecting)
-			return false;
+  void OnGUI()
+  {
+    if (isSelecting)
+    {
+      // Create a rect from both mouse positions
+      var rect = Utils.GetScreenRect(mousePosition1, Input.mousePosition);
+      Utils.DrawScreenRectFill(rect, new Color(0.8f, 0.8f, 0.95f, 0.25f));
+      Utils.DrawScreenRect(rect, new Color(0.8f, 0.8f, 0.95f), 2);
+    }
+  }
 
-		var camera = Camera.main;
-		var viewportBounds =
-		  Utils.GetViewportBounds(camera, mousePosition1, Input.mousePosition);
+  public bool IsWithinSelectionBounds(GameObject gameObject)
+  {
+    if (!isSelecting)
+      return false;
 
-		return viewportBounds.Contains(
-		  camera.WorldToViewportPoint(gameObject.transform.position));
-	}
+    var camera = Camera.main;
+    var viewportBounds =
+      Utils.GetViewportBounds(camera, mousePosition1, Input.mousePosition);
 
-	public void SelectUnitByClick()
-	{
-		Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
-		RaycastHit hit;
-		if (Physics.Raycast(ray, out hit))
-		{
-			if (IsTagSelectable(hit.transform.tag))
-				hit.transform.gameObject.GetComponent<ISelectable>().isSelected = true;
-		}
-	}
+    return viewportBounds.Contains(
+      camera.WorldToViewportPoint(gameObject.transform.position));
+  }
 
-	public int UnitUnderMouseId()
-	{
-		Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
-		RaycastHit hit;
-		if (Physics.Raycast(ray, out hit))
-		{
-			if (IsTagSelectable(hit.transform.tag))
-				return hit.transform.gameObject.GetInstanceID();
-		}
-		return 0;
-	}
+  public void SelectUnitByClick()
+  {
+    Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
+    RaycastHit hit;
+    if (Physics.Raycast(ray, out hit))
+    {
+      if (IsTagSelectable(hit.transform.tag))
+        hit.transform.gameObject.GetComponent<ISelectable>().isSelected = true;
+    }
+  }
 
-	private bool IsTagSelectable(string tag)
-	{
-		if (tag == "Cook" || tag == "Station" || tag == "Truck" || tag == "OrderStation")
-			return true;
-		return false;
-	}
+  public int UnitUnderMouseId()
+  {
+    Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
+    RaycastHit hit;
+    if (Physics.Raycast(ray, out hit))
+    {
+      if (IsTagSelectable(hit.transform.tag))
+        return hit.transform.gameObject.GetInstanceID();
+    }
+    return 0;
+  }
 
-	public void DispatchOrder(Order o)
-	{
-		foreach (var s in selectables.Values)
-		{
-			if (s.isSelected)
-				s.HandleOrder(o);
-		}
-	}
+  private bool IsTagSelectable(string tag)
+  {
+    if (tag == "Cook" || tag == "Station" || tag == "Truck" || tag == "OrderStation")
+      return true;
+    return false;
+  }
 
-	public void DeselectAll()
-	{
-		foreach (var s in selectables.Values)
-			s.isSelected = false;
-	}
+  public void DispatchOrder(Order o)
+  {
+    foreach (var s in selectables.Values)
+    {
+      if (s.isSelected)
+        s.HandleOrder(o);
+    }
+  }
 
-	public Order[] GetCurrentOrderPanel()
-	{
-		foreach (var s in selectables.Values)
-		{
-			if (s.isSelected)
-				return s.GetOrderPanel();
-		}
-		return (new Order[0]);
-	}
+  public void DeselectAll()
+  {
+    foreach (var s in selectables.Values)
+      s.isSelected = false;
+  }
 
-	public TaskLayout GetCurrentTaskLayout()
-	{
-		foreach (var s in selectables.Values)
-		{
-			if (s.isSelected && s.tag == "Cook")
-				return ChefSelectionLayout();
-			if (s.isSelected)
-				return s.GetTaskLayout();
-		}
-		return (ISelectable.defaultLayout);
-	}
+  public Order[] GetCurrentOrderPanel()
+  {
+    foreach (var s in selectables.Values)
+    {
+      if (s.isSelected)
+        return s.GetOrderPanel();
+    }
+    return (new Order[0]);
+  }
 
-	public TaskLayout ChefSelectionLayout()
-	{
-		TaskLayout layout = new TaskLayout();
-		layout.type = eTaskLayoutType.MULTI_SELECTION;
+  public TaskLayout GetCurrentTaskLayout()
+  {
+    foreach (var s in selectables.Values)
+    {
+      if (s.isSelected && s.tag == "Cook")
+        return ChefSelectionLayout();
+      if (s.isSelected)
+        return s.GetTaskLayout();
+    }
+    return (ISelectable.defaultLayout);
+  }
 
-		int chefCount = 0;
-		foreach (var s in selectables.Values)
-		{
-			if (s.isSelected && s.tag == "Cook")
-				chefCount++;
-		}
+  public TaskLayout ChefSelectionLayout()
+  {
+    TaskLayout layout = new TaskLayout();
+    layout.type = eTaskLayoutType.MULTI_SELECTION;
 
-		layout.pictograms = new Sprite[chefCount];
-		int i = 0;
-		foreach (var s in selectables.Values)
-		{
-			if (s.isSelected && s.tag == "Cook")
-			{
-				layout.pictograms[i] = s.transform.GetChild(1).GetComponent<SpriteRenderer>().sprite;
-				i++;
-			}
-		}
-		return layout;
-	}
+    int chefCount = 0;
+    foreach (var s in selectables.Values)
+    {
+      if (s.isSelected && s.tag == "Cook")
+        chefCount++;
+    }
 
-	public void DispatchOrderButtonClick(int id)
-	{
-		Order[] orders = GetCurrentOrderPanel();
-		if (id >= orders.Length)
-			return;
-		DispatchOrder(orders[id]);
-	}
+    layout.pictograms = new Sprite[chefCount];
+    int i = 0;
+    foreach (var s in selectables.Values)
+    {
+      if (s.isSelected && s.tag == "Cook")
+      {
+        layout.pictograms[i] = s.transform.GetChild(1).GetComponent<SpriteRenderer>().sprite;
+        i++;
+      }
+    }
+    return layout;
+  }
+
+  public void DispatchOrderButtonClick(int id)
+  {
+    Order[] orders = GetCurrentOrderPanel();
+    if (id >= orders.Length)
+      return;
+    DispatchOrder(orders[id]);
+  }
 }
