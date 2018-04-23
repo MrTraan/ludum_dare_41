@@ -2303,6 +2303,12 @@ MonoBehaviour:
   startingCarot: 10
   startingPea: 10
   startingPotato: 10
+  startingTSteak: 0
+  startingTFish: 0
+  startingTChicken: 0
+  startingTCarot: 0
+  startingTPea: 0
+  startingTPotato: 0
 --- !u!114 &114220265645564898
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -4311,6 +4317,7 @@ MonoBehaviour:
   - {fileID: 114528470975451062}
   - {fileID: 114082142208813440}
   taskStackCompletion: {fileID: 114799110357860372}
+  defaultOrderSprite: {fileID: 0}
 --- !u!114 &114735707660423112
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -4786,11 +4793,24 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   defaultSprite: {fileID: 10905, guid: 0000000000000000f000000000000000, type: 0}
-  pictograms:
+  recipe:
+  - {fileID: 21300000, guid: d8bbfae82f12642609afe445a4407064, type: 3}
   - {fileID: 21300000, guid: d612e5a7375a843a6a1df8eef22e6668, type: 3}
-  - {fileID: 21300000, guid: e819420e5c91d4a58af49c4f7436c995, type: 3}
-  - {fileID: 21300000, guid: fe6e4d9dfcd7e4466a6dc8b16baab1d4, type: 3}
-  offsetRecipes: 0
+  - {fileID: 21300000, guid: eb2b764b20a5c4a238103a11366e704a, type: 3}
+  resourceIcon:
+  - {fileID: 21300000, guid: 2b931581e2ae249e5a85fb6c0ace94ca, type: 3}
+  - {fileID: 21300000, guid: 3a1006d45304c4fdead465c328047a44, type: 3}
+  - {fileID: 21300000, guid: ac96ca81c4523410db6feb6b9f294a57, type: 3}
+  - {fileID: 21300000, guid: 46409e70c2e594fc091ec06a326fa6ff, type: 3}
+  - {fileID: 21300000, guid: e3cff19f9a252488a99157e0ed8419be, type: 3}
+  - {fileID: 21300000, guid: 295bae888df7a481cbe3399d543a549f, type: 3}
+  - {fileID: 21300000, guid: b82d645b796ba4b4c9f3ad82eeb169e8, type: 3}
+  - {fileID: 21300000, guid: afaf932b9492c4f57b836a8f96ec7c92, type: 3}
+  - {fileID: 21300000, guid: cbdbfc4fb7e424d0695b89b80f47075f, type: 3}
+  - {fileID: 21300000, guid: 9b18441bee0cc4cb4b73a324bc944880, type: 3}
+  - {fileID: 21300000, guid: ed06459dc10f043a8b6526519da0361f, type: 3}
+  - {fileID: 21300000, guid: 9e72db9bd40434c1d9948e53ab85f68e, type: 3}
+  - {fileID: 0}
 --- !u!114 &114866983677464712
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -6107,7 +6127,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 350, y: -45}
+  m_AnchoredPosition: {x: 90, y: -95}
   m_SizeDelta: {x: 120, y: 30}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!224 &224114530903297476
@@ -6183,7 +6203,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 350, y: -95}
+  m_AnchoredPosition: {x: 220, y: -145}
   m_SizeDelta: {x: 120, y: 30}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!224 &224160461551662010
@@ -7430,7 +7450,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 90, y: -95}
+  m_AnchoredPosition: {x: 220, y: -95}
   m_SizeDelta: {x: 120, y: 30}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!224 &224901639734369058
@@ -7546,7 +7566,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 220, y: -95}
+  m_AnchoredPosition: {x: 90, y: -145}
   m_SizeDelta: {x: 120, y: 30}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!224 &224932125599132780

@@ -35,6 +35,8 @@ public class UIManager : MonoBehaviour
 	public Image[] taskStackButtons;
 	public Slider taskStackCompletion;
 
+	public Sprite defaultOrderSprite;
+
 	void Start()
 	{
 	}
@@ -88,10 +90,13 @@ public class UIManager : MonoBehaviour
 			orderButtons[i].interactable = true;
 			if (orders[i].type == eOrderType.COOK_RECIPE)
 				orderButtons[i].GetComponent<Image>().sprite = GameManager.pictoManager.GetRecipe(orders[i].recipeId);
+			if (orders[i].type == eOrderType.ORDER)
+				orderButtons[i].GetComponent<Image>().sprite = GameManager.pictoManager.GetTransformed((int)orders[i].resource);
 		}
 		for (int i = orders.Length; i < 9; i++)
 		{
 			orderButtons[i].interactable = false;
+			orderButtons[i].GetComponent<Image>().sprite = defaultOrderSprite;
 		}
 	}
 }
