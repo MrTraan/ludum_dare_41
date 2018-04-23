@@ -5368,6 +5368,7 @@ MonoBehaviour:
   rythmeMin: 3
   rythmeMax: 6
   stackMax: 4
+  recipeDoneCount: 0
 --- !u!114 &114547626705764782
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -6293,6 +6294,7 @@ MonoBehaviour:
   - {fileID: 114776100285644454}
   truck: {fileID: 0}
   mainMenu: {fileID: 1961639845321522}
+  recipeCount: {fileID: 114421583971816036}
 --- !u!114 &114735707660423112
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -8927,7 +8929,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 82.05678, y: -183.1}
+  m_AnchoredPosition: {x: 86.920334, y: -183.1}
   m_SizeDelta: {x: 160, y: 47}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!224 &224142358243923512
@@ -9060,7 +9062,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 82.05678, y: -136.1}
+  m_AnchoredPosition: {x: 86.920334, y: -136.1}
   m_SizeDelta: {x: 160, y: 47}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!224 &224189383697049126
@@ -9261,7 +9263,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 82.05678, y: -28.15}
+  m_AnchoredPosition: {x: 86.920334, y: -28.15}
   m_SizeDelta: {x: 160, y: 56.3}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!224 &224276034603187748
@@ -10883,7 +10885,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 82.05678, y: -84.45}
+  m_AnchoredPosition: {x: 86.920334, y: -84.45}
   m_SizeDelta: {x: 160, y: 56.3}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!224 &224911496293426998

@@ -53,10 +53,13 @@ public class UIManager : MonoBehaviour
   public Truck truck;
 
   public GameObject mainMenu;
+
+  public Text recipeCount;
   private bool menuIsActive = false;
 
   void Start()
   {
+    UpdateRecipeCount(0);
   }
 
   void Update()
@@ -194,5 +197,11 @@ public class UIManager : MonoBehaviour
       mainMenu.SetActive(true);
       menuIsActive = true;
     }
+  }
+
+  public void UpdateRecipeCount(int count)
+  {
+    Debug.Log(count + " / " + GameManager.recipeTarget);
+    recipeCount.text = count + " / " + GameManager.recipeTarget;
   }
 }

@@ -21,6 +21,8 @@ public class GameManager : MonoBehaviour
 
   public static PictoManager pictoManager { get; private set; }
 
+  public static int recipeTarget = 30;
+
   void Awake()
   {
     instance = this;
@@ -101,6 +103,11 @@ public class GameManager : MonoBehaviour
         }
       }
     }
+  }
+
+  public static void Win()
+  {
+    Debug.Log("Win");
   }
 
 }

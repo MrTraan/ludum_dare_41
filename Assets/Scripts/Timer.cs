@@ -19,7 +19,6 @@ public class Timer : MonoBehaviour
 
     var minutes = time / 60;
     var seconds = time % 60;
-    var fraction = (time * 100) % 100;
 
     timerLabel.text = string.Format("{0:00} : {1:00}", minutes, seconds);
   }
@@ -28,7 +27,6 @@ public class Timer : MonoBehaviour
   {
     var minutes = time / 60;
     var seconds = time % 60;
-    var fraction = (time * 100) % 100;
 
     return string.Format("{0:00} : {1:00}", minutes, seconds);
   }

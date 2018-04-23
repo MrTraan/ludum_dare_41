@@ -81,7 +81,7 @@ public class SelectionManager : MonoBehaviour
 
       isSelecting = false;
     }
-  GameManager.uiManager.UpdateOrderPanel(GetCurrentOrderPanel());
+    GameManager.uiManager.UpdateOrderPanel(GetCurrentOrderPanel());
     GameManager.uiManager.UpdateTaskPanel(GetCurrentTaskLayout());
   }
 
@@ -159,7 +159,7 @@ public class SelectionManager : MonoBehaviour
       s.isSelected = false;
   }
 
-	private Order[] defaultOrderPanel = new Order[0];
+  private Order[] defaultOrderPanel = new Order[0];
   public Order[] GetCurrentOrderPanel()
   {
     foreach (var s in selectables.Values)
@@ -167,7 +167,7 @@ public class SelectionManager : MonoBehaviour
       if (s.isSelected)
         return s.GetOrderPanel();
     }
-		return (defaultOrderPanel);
+    return (defaultOrderPanel);
   }
 
   public TaskLayout GetCurrentTaskLayout()
@@ -217,13 +217,11 @@ public class SelectionManager : MonoBehaviour
 
   public void MouseOverEnter()
   {
-    Debug.Log("Enter");
     mouseIsOver = true;
   }
 
   public void MouseOverExit()
   {
-    Debug.Log("Leave");
     mouseIsOver = false;
   }
 }
