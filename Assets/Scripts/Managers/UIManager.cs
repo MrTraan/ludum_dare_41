@@ -150,7 +150,13 @@ public class UIManager : MonoBehaviour
 		{
 			orderButtons[i].interactable = true;
 			if (orders[i].type == eOrderType.COOK_RECIPE)
+			{
 				orderButtons[i].GetComponent<Image>().sprite = GameManager.pictoManager.GetRecipe(orders[i].recipeId);
+				if (GameManager.resourceManager.HasResourcesForRecipe(orders[i].recipeId))
+					orderButtons[i].interactable = true;
+				else
+					orderButtons[i].interactable = false;
+			}
 			if (orders[i].type == eOrderType.ORDER)
 				orderButtons[i].GetComponent<Image>().sprite = GameManager.pictoManager.GetTransformed((int)orders[i].resource);
 		}

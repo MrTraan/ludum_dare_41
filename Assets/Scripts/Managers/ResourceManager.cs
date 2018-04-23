@@ -95,4 +95,19 @@ public class ResourceManager : MonoBehaviour
 			stock[i.resource] -= i.amount;
 		return true;
 	}
+
+	public bool HasResourcesForRecipe(Recipe recipe)
+	{
+		foreach (var i in recipe.ingredients)
+		{
+			if (stock[i.resource] < i.amount)
+				return false;
+		}
+		return true;
+	}
+
+	public bool HasResourcesForRecipe(int id)
+	{
+		return HasResourcesForRecipe(GameManager.recipeManager.GetRecipeById(id));
+	}
 }
