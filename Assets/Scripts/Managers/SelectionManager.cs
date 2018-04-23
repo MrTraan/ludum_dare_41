@@ -6,6 +6,7 @@ public class SelectionManager : MonoBehaviour
 {
   private bool isSelecting = false;
   private Vector3 mousePosition1;
+  private bool mouseIsOver = false;
 
   private Dictionary<int, ISelectable> selectables = new Dictionary<int, ISelectable>();
 
@@ -112,6 +113,7 @@ public class SelectionManager : MonoBehaviour
   {
     Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
     RaycastHit hit;
+
     if (Physics.Raycast(ray, out hit))
     {
       if (IsTagSelectable(hit.transform.tag))
@@ -121,8 +123,12 @@ public class SelectionManager : MonoBehaviour
 
   public int UnitUnderMouseId()
   {
+    if (mouseIsOver)
+      return 0;
+
     Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
     RaycastHit hit;
+
     if (Physics.Raycast(ray, out hit))
     {
       if (IsTagSelectable(hit.transform.tag))
@@ -206,5 +212,17 @@ public class SelectionManager : MonoBehaviour
     if (id >= orders.Length)
       return;
     DispatchOrder(orders[id]);
+  }
+
+  public void MouseOverEnter()
+  {
+    Debug.Log("Enter");
+    mouseIsOver = true;
+  }
+
+  public void MouseOverExit()
+  {
+    Debug.Log("Leave");
+    mouseIsOver = false;
   }
 }
