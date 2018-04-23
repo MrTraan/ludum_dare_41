@@ -19,7 +19,6 @@ GameObject:
   serializedVersion: 5
   m_Component:
   - component: {fileID: 4299771904632874}
-  - component: {fileID: 114513998475849972}
   - component: {fileID: 82382742695764036}
   - component: {fileID: 114940671012705366}
   m_Layer: 0
@@ -122,18 +121,6 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 0
---- !u!114 &114513998475849972
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1144003497706938}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: fb9e548a8e2344bdfba4ebb41be15e94, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  talks: []
 --- !u!114 &114940671012705366
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -158,3 +145,7 @@ MonoBehaviour:
   - {fileID: 8300000, guid: 42ab63c1f987e408f8dcb3196b11a116, type: 3}
   - {fileID: 8300000, guid: 7be42b9fa4d584e799e7d9cc2becf001, type: 3}
   - {fileID: 8300000, guid: b7b5e649c0d96401984eb7a6137d7990, type: 3}
+  - {fileID: 8300000, guid: efeb8a5c53bc6a044b7ecb16b5a160ca, type: 3}
+  - {fileID: 8300000, guid: a5d577d48b0c1714f8e0e2b2862698eb, type: 3}
+  - {fileID: 8300000, guid: a795e483f8634e9418a9eaab63f685fb, type: 3}
+  - {fileID: 8300000, guid: c5232a9a5d9d23048b06009a34664378, type: 3}
