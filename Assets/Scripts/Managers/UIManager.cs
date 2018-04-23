@@ -15,6 +15,7 @@ public struct TaskLayout
 	public eTaskLayoutType type;
 	public float completion;
 	public Sprite[] pictograms;
+	public Dictionary<eResource, int> truckOrder;
 };
 
 public class UIManager : MonoBehaviour
@@ -73,6 +74,33 @@ public class UIManager : MonoBehaviour
 				taskStackButtons[i].enabled = false;
 
 			taskStackCompletion.value = layout.completion / 100.0f;
+		}
+
+		if (layout.type == eTaskLayoutType.MULTI_SELECTION)
+		{
+			multiSelectionLayout.SetActive(true);
+			taskStackLayout.SetActive(false);
+			truckOrderLayout.SetActive(false);
+
+			int maxSprites = multiSelectionLayout.transform.childCount;
+			for (int i = 0; i < layout.pictograms.Length && i < maxSprites; i++)
+			{
+				Image image = multiSelectionLayout.transform.GetChild(i).GetComponent<Image>();
+				image.enabled = true;
+				image.sprite = layout.pictograms[i];
+			}
+			for (int i = layout.pictograms.Length; i < maxSprites; i++)
+				multiSelectionLayout.transform.GetChild(i).GetComponent<Image>().enabled = false;
+		}
+
+		if (layout.type == eTaskLayoutType.TRUCK_ORDER)
+		{
+			truckOrderLayout.SetActive(true);
+			multiSelectionLayout.SetActive(false);
+			taskStackLayout.SetActive(false);
+
+			foreach (var elem in layout.truckOrder)
+				truckOrderLayout.transform.GetChild((int)elem.Key).GetChild(1).GetComponent<Text>().text = elem.Value.ToString();
 		}
 
 		if (layout.type == eTaskLayoutType.DEFAULT)

@@ -169,7 +169,6 @@ public class SelectionManager : MonoBehaviour
 	public void DispatchOrderButtonClick(int id)
 	{
 		Order[] orders = GetCurrentOrderPanel();
-		Debug.Log("Dispatching order " + id);
 		if (id >= orders.Length)
 			return;
 		DispatchOrder(orders[id]);
