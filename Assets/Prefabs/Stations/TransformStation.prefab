@@ -128,7 +128,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1465674726179458}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0.76999986, y: 0.5, z: 3.41}
+  m_LocalPosition: {x: -0.6300001, y: 0.5, z: 3.41}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 4071353573733400}
@@ -207,9 +207,9 @@ MonoBehaviour:
   cam: {fileID: 0}
   maxWorkers: 1
   currentWorkers: 0
-  inputResource: 3
+  inputResource: 2
   inputAmount: 10
-  outpoutResource: 9
+  outpoutResource: 8
   outputAmount: 10
 --- !u!114 &114146622823741226
 MonoBehaviour:
