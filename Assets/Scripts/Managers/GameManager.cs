@@ -84,14 +84,15 @@ public class GameManager : MonoBehaviour
           if (hit.transform.gameObject.GetComponent<Truck>().state == Truck.eState.UNLOADING)
           {
             o.type = eOrderType.WORK;
-            o.position = hit.point;
+            o.position = new Vector3(-10, -5, hit.point.z);
             o.station = hit.transform.gameObject.GetComponent<IStation>();
             selectionManager.DispatchOrder(o);
           }
           else
           {
             o.type = eOrderType.MOVE;
-            o.position = hit.point;
+            // o.position = hit.point;
+            o.position = new Vector3(-10, -5, hit.point.z);
             selectionManager.DispatchOrder(o);
           }
         }
