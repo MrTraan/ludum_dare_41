@@ -35,6 +35,17 @@ public class Chef : ISelectable
 			lastOrder = eOrderType.NONE;
 		}
 
+		if (assigned && assigneStation.tag == "Truck")
+		{
+			Truck truck = (Truck)assigneStation;
+			if (truck.state != Truck.eState.UNLOADING)
+			{
+				assigned = false;
+				assigneStation.RemoveWorker();
+				animator.SetTrigger("StopWork");
+			}
+		}
+
 	}
 
 	public override void HandleOrder(Order o)
