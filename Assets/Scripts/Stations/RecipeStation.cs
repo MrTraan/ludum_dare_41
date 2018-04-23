@@ -27,6 +27,12 @@ public class RecipeStation : IStation
 	new Order { type = eOrderType.COOK_RECIPE, recipeId = 0 },
 	new Order { type = eOrderType.COOK_RECIPE, recipeId = 1 },
 	new Order { type = eOrderType.COOK_RECIPE, recipeId = 2 },
+	new Order { type = eOrderType.COOK_RECIPE, recipeId = 3 },
+	new Order { type = eOrderType.COOK_RECIPE, recipeId = 4 },
+	new Order { type = eOrderType.COOK_RECIPE, recipeId = 5 },
+	new Order { type = eOrderType.COOK_RECIPE, recipeId = 6 },
+	new Order { type = eOrderType.COOK_RECIPE, recipeId = 7 },
+	new Order { type = eOrderType.COOK_RECIPE, recipeId = 8 },
   };
 
 	public override TaskLayout GetTaskLayout()
