@@ -33,8 +33,11 @@ public class OrderStation : ISelectable
 		}
 		if (o.type == eOrderType.SEND_TRUCK)
 		{
-			truck.GoShopping(orderedResources);
-			Reset();
+			if (truck.state == Truck.eState.EMPTY)
+			{
+				truck.GoShopping(orderedResources);
+				Reset();
+			}
 		}
 	}
 

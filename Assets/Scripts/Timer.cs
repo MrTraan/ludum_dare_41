@@ -1,4 +1,4 @@
-﻿using UnityEngine;
+using UnityEngine;
 using System.Collections;
 using UnityEngine.UI;
 
@@ -22,6 +22,6 @@ public class Timer : MonoBehaviour
     var fraction = (time * 100) % 100;
 
     //update the label value
-    timerLabel.text = string.Format("{0:00} : {1:00} : {2:000}", minutes, seconds, fraction);
+    timerLabel.text = string.Format("{0:00} : {1:00}", minutes, seconds);
   }
 }
