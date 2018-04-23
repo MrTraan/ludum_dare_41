@@ -160,10 +160,37 @@ public class SelectionManager : MonoBehaviour
 	{
 		foreach (var s in selectables.Values)
 		{
+			if (s.isSelected && s.tag == "Cook")
+				return ChefSelectionLayout();
 			if (s.isSelected)
 				return s.GetTaskLayout();
 		}
 		return (ISelectable.defaultLayout);
+	}
+
+	public TaskLayout ChefSelectionLayout()
+	{
+		TaskLayout layout = new TaskLayout();
+		layout.type = eTaskLayoutType.MULTI_SELECTION;
+
+		int chefCount = 0;
+		foreach (var s in selectables.Values)
+		{
+			if (s.isSelected && s.tag == "Cook")
+				chefCount++;
+		}
+
+		layout.pictograms = new Sprite[chefCount];
+		int i = 0;
+		foreach (var s in selectables.Values)
+		{
+			if (s.isSelected && s.tag == "Cook")
+			{
+				layout.pictograms[i] = s.transform.GetChild(1).GetComponent<SpriteRenderer>().sprite;
+				i++;
+			}
+		}
+		return layout;
 	}
 
 	public void DispatchOrderButtonClick(int id)
