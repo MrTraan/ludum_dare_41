@@ -116,7 +116,7 @@ MonoBehaviour:
   isSelected: 0
   task: {fileID: 0}
   cam: {fileID: 0}
-  maxWorkers: 1
+  maxWorkers: 3
   currentWorkers: 0
   state: 2
   travelTime: 1

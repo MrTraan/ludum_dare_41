@@ -36,6 +36,7 @@ public class Truck : IStation
 				GameManager.resourceManager.Add(command.Key, command.Value);
 			task.Reset();
 			state = eState.EMPTY;
+			Reset();
 		}
 		else if (state == eState.UNLOADING)
 		{
@@ -69,9 +70,20 @@ public class Truck : IStation
 
 		state = eState.UNLOADING;
 		animator.SetTrigger("Arrive");
+		task.Begin();
 	}
 
 	public override void HandleOrder(Order o)
 	{
+	}
+
+	public void Reset()
+	{
+		stock[eResource.FISH] = 0;
+		stock[eResource.STEAK] = 0;
+		stock[eResource.CHICKEN] = 0;
+		stock[eResource.PEAS] = 0;
+		stock[eResource.CAROT] = 0;
+		stock[eResource.POTATOES] = 0;
 	}
 }
