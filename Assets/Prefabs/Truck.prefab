@@ -118,9 +118,8 @@ MonoBehaviour:
   cam: {fileID: 0}
   maxWorkers: 1
   currentWorkers: 0
+  state: 2
   travelTime: 1
-  state: 0
-  orderStation: {fileID: 0}
 --- !u!114 &114994045481418000
 MonoBehaviour:
   m_ObjectHideFlags: 1
