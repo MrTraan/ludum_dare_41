@@ -6,12 +6,29 @@ using UnityEngine.SceneManagement;
 public class UITools : MonoBehaviour
 {
 
-  public void NextScene()
+  public Animation blackBackground;
+  public GameObject text;
+
+  public void Update()
   {
     if (Input.GetKeyDown(KeyCode.Space))
     {
-      Debug.Log("Next Scene");
-      // SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
+      blackBackground.Play();
+      text.SetActive(false);
+      StartCoroutine("WaitFadeOut");
+      // NextScene();
     }
+
+  }
+  public void NextScene()
+  {
+    Debug.Log("Next Scene");
+    // SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
+  }
+
+  IEnumerator WaitFadeOut()
+  {
+    yield return new WaitForSeconds(2);
+    NextScene();
   }
 }
