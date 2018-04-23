@@ -110,7 +110,7 @@ public class RecipeManager : MonoBehaviour
         commands.Remove(item);
         recipeDoneCount++;
         GameManager.uiManager.UpdateRecipeCount(recipeDoneCount);
-        if (recipeDoneCount == GameManager.recipeTarget)
+        if (recipeDoneCount == GameManager.instance.recipeTarget)
           GameManager.Win();
         return;
       }

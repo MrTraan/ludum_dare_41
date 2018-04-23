@@ -21,7 +21,7 @@ public class GameManager : MonoBehaviour
 
   public static PictoManager pictoManager { get; private set; }
 
-  public static int recipeTarget = 30;
+  public int recipeTarget = 30;
 
   void Awake()
   {
@@ -107,7 +107,7 @@ public class GameManager : MonoBehaviour
 
   public static void Win()
   {
-    Debug.Log("Win");
+    uiManager.DisplayWinMenu();
   }
 
 }

@@ -53,6 +53,9 @@ public class UIManager : MonoBehaviour
   public Truck truck;
 
   public GameObject mainMenu;
+  public GameObject winMenu;
+  public Timer timer;
+  public Text yourTime;
 
   public Text recipeCount;
   private bool menuIsActive = false;
@@ -199,9 +202,15 @@ public class UIManager : MonoBehaviour
     }
   }
 
+  public void DisplayWinMenu()
+  {
+    winMenu.SetActive(true);
+    yourTime.text = "Your Time \n" + timer.GetCurrentTime();
+    timer.gameObject.SetActive(false);
+  }
+
   public void UpdateRecipeCount(int count)
   {
-    Debug.Log(count + " / " + GameManager.recipeTarget);
-    recipeCount.text = count + " / " + GameManager.recipeTarget;
+    recipeCount.text = count + " / " + GameManager.instance.recipeTarget;
   }
 }
