@@ -165,6 +165,7 @@ public class UIManager : MonoBehaviour
 
 			if (orders[i].type == eOrderType.SEND_TRUCK)
 			{
+				orderButtons[i].GetComponent<Image>().sprite = GameManager.pictoManager.GetTruck();
 				if (truck.state == Truck.eState.EMPTY)
 					orderButtons[i].interactable = true;
 				else

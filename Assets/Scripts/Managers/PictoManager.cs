@@ -11,6 +11,8 @@ public class PictoManager : MonoBehaviour
 	private Sprite[] recipe;
 	[SerializeField]
 	private Sprite[] resourceIcon;
+	[SerializeField]
+	private Sprite truckIcon;
 
 	public Sprite GetRecipe(int id)
 	{
@@ -31,5 +33,10 @@ public class PictoManager : MonoBehaviour
 		if (id > resourceIcon.Length)
 			return defaultSprite;
 		return resourceIcon[id];
+	}
+
+	public Sprite GetTruck()
+	{
+		return truckIcon;
 	}
 }
