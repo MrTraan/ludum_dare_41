@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.44657868, g: 0.49641263, b: 0.57481706, a: 1}
+  m_IndirectSpecularColor: {r: 0.44657898, g: 0.4964133, b: 0.5748178, a: 1}
 --- !u!157 &3
 LightmapSettings:
   m_ObjectHideFlags: 0
@@ -241,6 +241,42 @@ Prefab:
       propertyPath: truck
       value: 
       objectReference: {fileID: 523616344}
+    - target: {fileID: 1087472576878122, guid: 0d88ad7e99699e749bf5665a60404686, type: 2}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 114467279668902234, guid: 0d88ad7e99699e749bf5665a60404686,
+        type: 2}
+      propertyPath: m_Text
+      value: '0
+
+'
+      objectReference: {fileID: 0}
+    - target: {fileID: 114448530623433628, guid: 0d88ad7e99699e749bf5665a60404686,
+        type: 2}
+      propertyPath: m_Text
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 114570157395952030, guid: 0d88ad7e99699e749bf5665a60404686,
+        type: 2}
+      propertyPath: m_Text
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 114157102803779488, guid: 0d88ad7e99699e749bf5665a60404686,
+        type: 2}
+      propertyPath: m_Text
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 114889949564916584, guid: 0d88ad7e99699e749bf5665a60404686,
+        type: 2}
+      propertyPath: m_Text
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 114674399210230782, guid: 0d88ad7e99699e749bf5665a60404686,
+        type: 2}
+      propertyPath: m_Text
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 0d88ad7e99699e749bf5665a60404686, type: 2}
   m_IsPrefabParent: 0
