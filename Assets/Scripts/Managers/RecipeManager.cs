@@ -104,6 +104,7 @@ public class RecipeManager : MonoBehaviour
 		{
 			if (item.id == recipe.id)
 			{
+				GameManager.resourceManager.Add(eResource.GOLD, 30);
 				commands.Remove(item);
 				return;
 			}
