@@ -56,7 +56,7 @@ public class UITools : MonoBehaviour
 
   IEnumerator NextScene()
   {
-    yield return new WaitForSeconds(2);
+    yield return new WaitForSeconds(3);
     SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
   }
 }
