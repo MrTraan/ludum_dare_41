@@ -14,8 +14,8 @@ public enum eResource
 	T_CHICKEN,
 	T_STEAK,
 	T_FISH,
-	T_CAROT,
 	T_PEAS,
+	T_CAROT,
 	T_POTATOES,
 
 	GOLD,
