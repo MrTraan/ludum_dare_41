@@ -5,8 +5,13 @@ using UnityEngine;
 public class RecipeManager : MonoBehaviour
 {
   private Recipe[] recipes;
+  public float rythmeMin = 3;
+  public float rythmeMax = 6;
+  public int stackMax = 4;
 
-  // Use this for initialization
+  private List<Recipe> commands = new List<Recipe>();
+  private bool maxStackReached = false;
+
   void Start()
   {
     recipes = new Recipe[3];
@@ -28,6 +33,17 @@ public class RecipeManager : MonoBehaviour
     recipes[2].ingredients.Add(new Recipe.Ingredient(eResource.FISH, 2));
     recipes[2].name = "Beef & Broccoli";
     recipes[2].id = 2;
+
+    StartCoroutine("AddCommand", Random.Range(rythmeMin, rythmeMax));
+  }
+
+  void Update()
+  {
+    if (maxStackReached && commands.Count < stackMax)
+    {
+      StartCoroutine("AddCommand", Random.Range(rythmeMin, rythmeMax));
+      maxStackReached = false;
+    }
   }
 
   public Recipe[] GetRecipes()
@@ -40,9 +56,28 @@ public class RecipeManager : MonoBehaviour
     return recipes[id];
   }
 
-	public void ServeRecipe(Recipe recipe)
-	{
-		// If recipe was ordered, remove it from orders and gain gold
-		// Otherwise ignore
-	}
+  public void ServeRecipe(Recipe recipe)
+  {
+    foreach (Recipe item in commands)
+    {
+      if (item.id == recipe.id)
+      {
+        commands.Remove(item);
+        return;
+      }
+    }
+    Debug.Log("You have done a useless recipe!");
+  }
+
+  IEnumerator AddCommand(float t)
+  {
+    yield return new WaitForSeconds(t);
+    commands.Add(recipes[Random.Range(0, recipes.Length)]);
+    // Debug.Log("Add recipes: " + t);
+    if (commands.Count < stackMax)
+      StartCoroutine("AddCommand", Random.Range(rythmeMin, rythmeMax));
+    else
+      maxStackReached = true;
+    // Debug.Log(commands.Count);
+  }
 }
