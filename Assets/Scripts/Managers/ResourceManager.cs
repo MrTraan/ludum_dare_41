@@ -4,13 +4,19 @@ using UnityEngine;
 
 public enum eResource
 {
-  GOLD,
   CHICKEN,
   STEAK,
   FISH,
   PEAS,
   CAROT,
   POTATOES,
+  T_CHICKEN,
+  T_STEAK,
+  T_FISH,
+  T_PEAS,
+  T_CAROT,
+  T_POTATOES,
+  GOLD,
 };
 
 public class ResourceManager : MonoBehaviour

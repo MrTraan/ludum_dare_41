@@ -12,6 +12,11 @@ public class TransformStation : IStation
   public override void HandleOrder(Order o)
   {
   }
+  protected override void Start()
+  {
+    base.Start();
+    AttributeIcon();
+  }
 
   protected override void Update()
   {
@@ -27,5 +32,18 @@ public class TransformStation : IStation
     }
     if (!task.running && currentWorkers > 0 && GameManager.resourceManager.Consume(inputResource, inputAmount))
       task.Begin();
+  }
+
+  private void AttributeIcon()
+  {
+    SpriteRenderer[] sr = GetComponentsInChildren<SpriteRenderer>();
+
+    foreach (SpriteRenderer item in sr)
+    {
+      if (item.name == "Icon")
+      {
+        item.sprite = GameManager.pictoManager.GetTransformed((int)outpoutResource);
+      }
+    }
   }
 }

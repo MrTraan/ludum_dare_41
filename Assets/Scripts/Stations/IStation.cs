@@ -8,6 +8,8 @@ abstract public class IStation : ISelectable
   public Task task;
   public Camera cam;
 
+  // public Sprite[] icons;
+
   public int maxWorkers = 1;
   [SerializeField]
   protected int currentWorkers = 0;
