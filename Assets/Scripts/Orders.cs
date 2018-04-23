@@ -9,6 +9,7 @@ public enum eOrderType
 	WORK,
 	COOK_RECIPE,
 	ORDER,
+	SEND_TRUCK,
 };
 
 public struct Order
