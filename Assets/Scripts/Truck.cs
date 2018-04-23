@@ -16,7 +16,7 @@ public class Truck : IStation
 	public float travelTime = 30;
 
 	private Animator animator;
-	private Dictionary<eResource, int> stock;
+	private Dictionary<eResource, int> stock = new Dictionary<eResource, int>();
 
 	protected override void Start()
 	{
@@ -49,6 +49,16 @@ public class Truck : IStation
 		StartCoroutine("Travel");
 		animator = GetComponentInChildren<Animator>();
 	}
+
+	public override TaskLayout GetTaskLayout()
+	{
+		TaskLayout layout = new TaskLayout();
+		layout.type = eTaskLayoutType.TRUCK_ORDER;
+		layout.truckOrder = stock;
+
+		return layout;
+	}
+
 
 	IEnumerator Travel()
 	{
