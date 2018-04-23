@@ -12,11 +12,13 @@ public class Chef : ISelectable
   private Movable movable;
   [SerializeField]
   private eOrderType lastOrder = eOrderType.NONE;
+  private Animator animator;
 
   protected override void Start()
   {
     base.Start();
     movable = GetComponent<Movable>();
+    animator = GetComponentInChildren<Animator>();
   }
 
   protected override void Update()
@@ -27,6 +29,7 @@ public class Chef : ISelectable
       if (targetStation.AssignWorker())
       {
         assigned = true;
+        animator.SetTrigger("StartWork");
         assigneStation = targetStation;
       }
       lastOrder = eOrderType.NONE;
@@ -42,6 +45,7 @@ public class Chef : ISelectable
       if (assigned)
       {
         assigneStation.RemoveWorker();
+        animator.SetTrigger("StopWork");
       }
       movable.MoveTo(o.position);
     }
