@@ -108,7 +108,6 @@ public class RecipeManager : MonoBehaviour
 				return;
 			}
 		}
-		Debug.Log("You have done a useless recipe!");
 	}
 
 	public List<Recipe> GetCurrentCommandList()
@@ -124,6 +123,5 @@ public class RecipeManager : MonoBehaviour
 			StartCoroutine("AddCommand", Random.Range(rythmeMin, rythmeMax));
 		else
 			maxStackReached = true;
-		Debug.Log(commands.Count);
 	}
 }
