@@ -5,9 +5,9 @@ using UnityEngine;
 public class TransformStation : IStation
 {
   public eResource inputResource = eResource.GOLD;
-  public int inputAmount = 10;
+  public int inputAmount = 1;
   public eResource outpoutResource = eResource.CHICKEN;
-  public int outputAmount = 10;
+  public int outputAmount = 1;
 
   public override void HandleOrder(Order o)
   {

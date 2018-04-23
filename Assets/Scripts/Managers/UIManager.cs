@@ -27,6 +27,13 @@ public class UIManager : MonoBehaviour
 	public Text carotAmount;
 	public Text potatoAmount;
 
+	public Text tchickenAmount;
+	public Text tsteakAmount;
+	public Text tfishAmount;
+	public Text tpeasAmount;
+	public Text tcarotAmount;
+	public Text tpotatoAmount;
+
 	public Text goldAmount;
 
 	public Button[] orderButtons;
@@ -55,6 +62,13 @@ public class UIManager : MonoBehaviour
 		carotAmount.text = GameManager.resourceManager.Get(eResource.CAROT).ToString();
 		potatoAmount.text = GameManager.resourceManager.Get(eResource.POTATOES).ToString();
 		goldAmount.text = GameManager.resourceManager.Get(eResource.GOLD).ToString();
+
+		tchickenAmount.text = GameManager.resourceManager.Get(eResource.T_CHICKEN).ToString();
+		tsteakAmount.text = GameManager.resourceManager.Get(eResource.T_STEAK).ToString();
+		tfishAmount.text = GameManager.resourceManager.Get(eResource.T_FISH).ToString();
+		tpeasAmount.text = GameManager.resourceManager.Get(eResource.T_PEAS).ToString();
+		tcarotAmount.text = GameManager.resourceManager.Get(eResource.T_CAROT).ToString();
+		tpotatoAmount.text = GameManager.resourceManager.Get(eResource.T_POTATOES).ToString();
 
 		var currentCommands = GameManager.recipeManager.GetCurrentCommandList();
 		for (int i = 0; i < commands.Length; i++)
