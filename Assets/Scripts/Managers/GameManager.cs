@@ -33,6 +33,30 @@ public class GameManager : MonoBehaviour
 
 	private void Update()
 	{
+		int order = -1;
+
+		if (Input.GetButtonDown("Order1"))
+			order = 0;
+		if (Input.GetButtonDown("Order2"))
+			order = 1;
+		if (Input.GetButtonDown("Order3"))
+			order = 2;
+		if (Input.GetButtonDown("Order4"))
+			order = 3;
+		if (Input.GetButtonDown("Order5"))
+			order = 4;
+		if (Input.GetButtonDown("Order6"))
+			order = 5;
+		if (Input.GetButtonDown("Order7"))
+			order = 6;
+		if (Input.GetButtonDown("Order8"))
+			order = 7;
+		if (Input.GetButtonDown("Order9"))
+			order = 8;
+
+		if (order != -1)
+			selectionManager.DispatchOrderButtonClick(order);
+
 		if (Input.GetMouseButtonUp(1))
 		{
 			Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
