@@ -39,4 +39,10 @@ public class RecipeManager : MonoBehaviour
   {
     return recipes[id];
   }
+
+	public void ServeRecipe(Recipe recipe)
+	{
+		// If recipe was ordered, remove it from orders and gain gold
+		// Otherwise ignore
+	}
 }
