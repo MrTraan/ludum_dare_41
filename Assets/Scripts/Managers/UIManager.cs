@@ -27,6 +27,8 @@ public class UIManager : MonoBehaviour
 	public Text carotAmount;
 	public Text potatoAmount;
 
+	public Text goldAmount;
+
 	public Button[] orderButtons;
 
 	public GameObject multiSelectionLayout;
@@ -50,6 +52,7 @@ public class UIManager : MonoBehaviour
 		peasAmount.text = GameManager.resourceManager.Get(eResource.PEAS).ToString();
 		carotAmount.text = GameManager.resourceManager.Get(eResource.CAROT).ToString();
 		potatoAmount.text = GameManager.resourceManager.Get(eResource.POTATOES).ToString();
+		goldAmount.text = GameManager.resourceManager.Get(eResource.GOLD).ToString();
 	}
 
 	public void OrderButtonClick(int id)
