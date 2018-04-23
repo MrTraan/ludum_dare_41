@@ -40,6 +40,8 @@ public class UIManager : MonoBehaviour
 
 	public Sprite defaultOrderSprite;
 
+	public Image[] commands;
+
 	void Start()
 	{
 	}
@@ -53,6 +55,20 @@ public class UIManager : MonoBehaviour
 		carotAmount.text = GameManager.resourceManager.Get(eResource.CAROT).ToString();
 		potatoAmount.text = GameManager.resourceManager.Get(eResource.POTATOES).ToString();
 		goldAmount.text = GameManager.resourceManager.Get(eResource.GOLD).ToString();
+
+		var currentCommands = GameManager.recipeManager.GetCurrentCommandList();
+		for (int i = 0; i < commands.Length; i++)
+		{
+			if (i >= currentCommands.Count)
+			{
+				commands[i].enabled = false;
+			}
+			else
+			{
+				commands[i].enabled = true;
+				commands[i].sprite = GameManager.pictoManager.GetRecipe(currentCommands[i].id);
+			}
+		}
 	}
 
 	public void OrderButtonClick(int id)
